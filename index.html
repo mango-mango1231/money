@@ -1,0 +1,27 @@
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"></p>
+<h2 data-ke-size="size26">어디까지 선택 가능?</h2>
+<div id="imageContainer" class="container">
+<div class="image-button"><img src="https://i.postimg.cc/xNSmCNy0/image.png" alt="선택지 1" /></div>
+<div class="image-button"><img src="https://i.postimg.cc/xNSmCNy0/image.png" alt="선택지 2" /></div>
+<div class="image-button"><img src="https://i.postimg.cc/xNSmCNy0/image.png" alt="선택지 3" /></div>
+</div>
+<div class="button-container"><button class="button">이전 문제</button> <button class="button">다음 문제</button></div>
+<script>
+        function selectImage(element) {
+            // 모든 선택된 이미지 초기화
+            document.querySelectorAll('.image-button').forEach(button => button.classList.remove('selected'));
+            // 선택한 이미지에만 'selected' 클래스 추가
+            element.classList.add('selected');
+        }
+
+        function prevQuestion() {
+            alert("이전 문제로 이동합니다.");
+            // 이전 문제로 이동하는 로직 추가
+        }
+
+        function nextQuestion() {
+            alert("다음 문제로 이동합니다.");
+            // 다음 문제로 이동하는 로직 추가
+        }
+    </script>
