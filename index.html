@@ -3,97 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>재미있는 선택 테스트</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <title>돈무새 테스트</title>
     <style>
-        body { font-family: 'Noto Sans KR', sans-serif; }
-        .container {
-            width: 100%;
-            overflow-x: scroll;
-            display: flex;
-            padding: 20px;
-            scroll-snap-type: x mandatory;
-        }
-        .image-button {
-            flex: 0 0 auto;
-            width: 100px;
-            margin: 0 10px;
-            cursor: pointer;
-            border: 3px solid transparent;
-            transition: transform 0.2s, border-color 0.2s;
-            scroll-snap-align: center;
-        }
-        .image-button.selected {
-            transform: scale(1.1);
-            border-color: #4CAF50;
-        }
-        .image-button img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-        .button-container {
+        /* CSS 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
             text-align: center;
+        }
+        .title {
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+        .title .text-red { color: red; }
+        .title .text-yellow { color: orange; }
+        .title .text-green { color: green; }
+        .subtitle {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: #666;
+        }
+        .question-container {
+            display: none;
+            padding: 20px;
+        }
+        .question-container.active {
+            display: block;
+        }
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
             margin-top: 20px;
         }
-        .button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 12px;
+        .image-option {
+            position: relative;
             cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s, transform 0.2s;
-            margin: 0 10px;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+        .image-option.selected {
+            border-color: blue;
+        }
+        .image-option img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .level-text {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            padding: 2px 5px;
+            font-size: 0.8rem;
+            border-radius: 3px;
+        }
+        .image-caption {
+            margin-top: 5px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
         .button:hover {
-            background-color: #45A049;
-            transform: scale(1.05);
+            background-color: #0056b3;
         }
-        .button:active {
-            transform: scale(0.98);
+        .center-buttons {
+            margin-top: 20px;
+        }
+        @media (max-width: 600px) {
+            .title { font-size: 1.5rem; }
+            .subtitle { font-size: 0.9rem; }
+            .image-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
+            .button { padding: 8px 12px; font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
+    <h1 class="title"><span class="text-red">돈</span><span class="text-yellow">무</span><span class="text-green">새</span> 테스트</h1>
+    <div class="subtitle">나는 얼마나 돈에 미친 새끼인가</div>
 
-    <h2>어디까지 선택 가능?</h2>
-    <div class="container" id="imageContainer">
-        <div class="image-button" onclick="selectImage(this)">
-            <img src="https://i.postimg.cc/xNSmCNy0/image.png" alt="선택지 1">
+    <!-- 질문 1 -->
+    <div id="question1" class="question-container active">
+        <p>1. 매일 아침 부장님(교수님)께 1주간 이렇게 아침 인사하면</p>
+        <div class="image-grid">
+            <div class="image-option" onclick="toggleSelection(this)">
+                <img src="https://i.postimg.cc/MG2p4nZS/image.png" alt="Option 1">
+                <div class="level-text">level0</div>
+                <div class="image-caption">포..포기</div>
+            </div>
+            <div class="image-option" onclick="toggleSelection(this)">
+                <img src="https://i.postimg.cc/MXLY7hBz/image.png" alt="Option 2">
+                <div class="level-text">level1 <span class="amount-red">100만원</span></div>
+                <div class="image-caption">존경하는 부장님, 오늘도 멋지십니다!!!</div>
+            </div>
+            <div class="image-option" onclick="toggleSelection(this)">
+                <img src="https://i.postimg.cc/dkt96FnV/image.png" alt="Option 3">
+                <div class="level-text">level2 <span class="amount-red">200만원</span></div>
+                <div class="image-caption">앙증맞은 손하트 추가</div>
+            </div>
+            <div class="image-option" onclick="toggleSelection(this)">
+                <img src="https://i.postimg.cc/0zRd3DZ3/image.png" alt="Option 4">
+                <div class="level-text">level3 <span class="amount-red">300만원</span></div>
+                <div class="image-caption">손하트 받고 한 바퀴 턴 추가</div>
+            </div>
         </div>
-        <div class="image-button" onclick="selectImage(this)">
-            <img src="https://i.postimg.cc/xNSmCNy0/image.png" alt="선택지 2">
-        </div>
-        <div class="image-button" onclick="selectImage(this)">
-            <img src="https://i.postimg.cc/xNSmCNy0/image.png" alt="선택지 3">
+        <div class="center-buttons">
+            <button class="button next-button" onclick="nextQuestion(currentQuestion)">다음 문제</button>
         </div>
     </div>
 
-    <div class="button-container">
-        <button class="button" onclick="prevQuestion()">이전 문제</button>
-        <button class="button" onclick="nextQuestion()">다음 문제</button>
+    <!-- 질문 2 -->
+    <div id="question2" class="question-container">
+        <p>2. 상사의 지시사항을 따르지 않을 때의 기분은?</p>
+        <div class="image-grid">
+            <div class="image-option" onclick="toggleSelection(this)">
+                <img src="https://i.postimg.cc/MG2p4nZS/image.png" alt="Option 1">
+                <div class="level-text">level0</div>
+                <div class="image-caption">1년 간 쌓은 사진 삭제하기</div>
+            </div>
+        </div>
+        <div class="center-buttons">
+            <button class="button prev-button" onclick="prevQuestion(currentQuestion)">이전 문제</button>
+            <button class="button next-button" onclick="nextQuestion(currentQuestion)">다음 문제</button>
+        </div>
+    </div>
+
+    <!-- 결과 -->
+    <div id="result" class="question-container">
+        <h2>테스트 결과</h2>
+        <p id="resultText">테스트를 완료하셨습니다! 재미있는 결과를 확인하세요.</p>
     </div>
 
     <script>
-        function selectImage(element) {
-            // 모든 선택된 이미지 초기화
-            document.querySelectorAll('.image-button').forEach(button => button.classList.remove('selected'));
-            // 선택한 이미지에만 'selected' 클래스 추가
-            element.classList.add('selected');
+        // JavaScript 코드
+        let currentQuestion = 1;
+        let selectedElement = null;
+
+        function nextQuestion(questionNumber) {
+            document.getElementById(`question${questionNumber}`).classList.remove("active");
+            currentQuestion++;
+            const nextQuestionElement = document.getElementById(`question${currentQuestion}`);
+            if (nextQuestionElement) {
+                nextQuestionElement.classList.add("active");
+            } else {
+                showResult();
+            }
         }
 
-        function prevQuestion() {
-            alert("이전 문제로 이동합니다.");
-            // 이전 문제로 이동하는 로직 추가
+        function prevQuestion(questionNumber) {
+            document.getElementById(`question${questionNumber}`).classList.remove("active");
+            currentQuestion--;
+            const prevQuestionElement = document.getElementById(`question${currentQuestion}`);
+            if (prevQuestionElement) {
+                prevQuestionElement.classList.add("active");
+            }
         }
 
-        function nextQuestion() {
-            alert("다음 문제로 이동합니다.");
-            // 다음 문제로 이동하는 로직 추가
+        function toggleSelection(element) {
+            if (selectedElement && selectedElement !== element) {
+                selectedElement.classList.remove("selected");
+            }
+            element.classList.toggle("selected");
+            selectedElement = element.classList.contains("selected") ? element : null;
+        }
+
+        function showResult() {
+            document.getElementById(`question${currentQuestion}`).classList.remove("active");
+            document.getElementById("result").classList.add("active");
+            document.getElementById("resultText").textContent = "여기서 당신의 심리 테스트 결과를 보여줍니다!";
         }
     </script>
-
 </body>
 </html>
