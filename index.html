@@ -52,13 +52,13 @@
         }
         .image-grid {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            overflow-x: auto;
             gap: 20px;
+            padding: 10px;
+            scroll-behavior: smooth;
         }
         .image-option { 
-            position: relative;
-            flex: 1 1 45%;
+            flex: 0 0 auto;
             cursor: pointer;
             border-radius: 15px;
             transition: background-color 0.3s ease;
@@ -137,56 +137,14 @@
         </div>
     </div>
 
-    <!-- 두 번째 질문 -->
-    <div id="question2" class="question-container">
-        <p>2. 상사의 지시사항을 따르지 않을 때의 기분은?</p>
-        <div class="image-grid">
-            <div class="image-option" onclick="toggleSelection(this)">
-                <img src="https://i.postimg.cc/MG2p4nZS/image.png" alt="Option 1">
-                <div class="level-text">level0</div>
-                <div class="image-caption">1년 간 쌓은 사진 삭제하기</div>
-            </div>
-            <div class="image-option" onclick="toggleSelection(this)">
-                <img src="https://i.postimg.cc/vcKKntx1/1.png" alt="Option 2">
-                <div class="level-text">level1</div>
-                <div class="image-caption">1년 간 쌓은 사진 삭제하기</div>
-            </div>
-            <div class="image-option" onclick="toggleSelection(this)">
-                <img src="https://i.postimg.cc/qNC5x621/TOP3.png" alt="Option 3">
-                <div class="level-text">level2</div>
-                <div class="image-caption">1년 간 쌓은 사진 삭제하기</div>
-            </div>
-            <div class="image-option" onclick="toggleSelection(this)">
-                <img src="https://i.postimg.cc/wt8bfxVg/image.png" alt="Option 4">
-                <div class="level-text">level3</div>
-                <div class="image-caption">1년 간 쌓은 사진 삭제하기</div>
-            </div>
-        </div>
-        <div class="center-buttons">
-            <button class="button prev-button" onclick="prevQuestion(2)">이전 문제</button>
-            <button class="button next-button" onclick="nextQuestion(2)">다음 문제</button>
-        </div>
-    </div>
-
-    <div id="result" class="question-container">
-        <h2>테스트 결과</h2>
-        <p id="resultText">테스트를 완료하셨습니다! 재미있는 결과를 확인하세요.</p>
-    </div>
-
     <script>
         let currentQuestion = 1;
         let selectedElement = null;
 
         function nextQuestion(questionNumber) {
-            document.getElementById(question${questionNumber}).classList.remove("active");
+            document.getElementById(`question${questionNumber}`).classList.remove("active");
             currentQuestion++;
-            document.getElementById(question${currentQuestion}).classList.add("active");
-        }
-
-        function prevQuestion(questionNumber) {
-            document.getElementById(question${questionNumber}).classList.remove("active");
-            currentQuestion--;
-            document.getElementById(question${currentQuestion}).classList.add("active");
+            document.getElementById(`question${currentQuestion}`).classList.add("active");
         }
 
         function toggleSelection(element) {
@@ -195,12 +153,6 @@
             }
             element.classList.toggle("selected");
             selectedElement = element.classList.contains("selected") ? element : null;
-        }
-
-        function showResult() {
-            document.getElementById(question${currentQuestion}).classList.remove("active");
-            document.getElementById("result").classList.add("active");
-            document.getElementById("resultText").textContent = "여기서 당신의 심리 테스트 결과를 보여줍니다!";
         }
     </script>
 </body>
