@@ -27,7 +27,9 @@
             margin: 20px;
             text-align: left;
         }
-        .question-container.active { display: block; }
+        .question-container.active { 
+            display: block; 
+        }
         .button {
             margin-top: 20px; 
             padding: 15px 30px; 
@@ -43,7 +45,7 @@
             background-color: #4CAF50;
         }
         .prev-button {
-            background-color: #87CEFA;
+            background-color: #FFA07A; /* Light orange color */
             margin-right: 10px;
         }
         p { 
@@ -107,29 +109,29 @@
     </h1>
     <div class="subtitle">나는 얼마나 돈에 미친 새끼인가</div>
     
-    <!-- 첫 번째 질문 -->
+    <!-- First Question -->
     <div id="question1" class="question-container active">
-        <p>1. 매일 아침 부장님(교수님)께 1주간 이렇게 아침 인사하면</p>
+        <p>1. 매일 아침 부장님(교수님)께 일주일동안 이렇게 아침 인사 가능?</p>
         <div class="image-grid">
             <div class="image-option" onclick="toggleSelection(this)">
-                <img src="https://i.postimg.cc/MG2p4nZS/image.png" alt="Option 1">
-                <div class="level-text">level0</div>
-                <div class="image-caption">포..포기</div>
-            </div>
-            <div class="image-option" onclick="toggleSelection(this)">
-                <img src="https://i.postimg.cc/MXLY7hBz/image.png" alt="Option 2">
-                <div class="level-text">level1 <span class="amount-red">100만원</span></div>
+                <img src="https://i.postimg.cc/MXLY7hBz/image.png" alt="Option 1">
+                <div class="level-text">level1 <span class="amount-red">5만원</span></div>
                 <div class="image-caption">존경하는 부장님, 오늘도 멋지십니다!!!</div>
             </div>
             <div class="image-option" onclick="toggleSelection(this)">
-                <img src="https://i.postimg.cc/dkt96FnV/image.png" alt="Option 3">
-                <div class="level-text">level2 <span class="amount-red">200만원</span></div>
+                <img src="https://i.postimg.cc/dkt96FnV/image.png " alt="Option 2">
+                <div class="level-text">level1 <span class="amount-red">10만원</span></div>
                 <div class="image-caption">앙증맞은 손하트 추가</div>
             </div>
             <div class="image-option" onclick="toggleSelection(this)">
-                <img src="https://i.postimg.cc/0zRd3DZ3/image.png" alt="Option 4">
-                <div class="level-text">level3 <span class="amount-red">300만원</span></div>
+                <img src="https://i.postimg.cc/0zRd3DZ3/image.png" alt="Option 3">
+                <div class="level-text">level2 <span class="amount-red">15만원</span></div>
                 <div class="image-caption">손하트 받고 한 바퀴 턴 추가</div>
+            </div>
+            <div class="image-option" onclick="toggleSelection(this)">
+                <img src="https://i.postimg.cc/MG2p4nZS/image.png" alt="Option 4">
+                <div class="level-text">무리데쓰 </div>
+                <div class="image-caption">포…포기</div>
             </div>
         </div>
         <div class="center-buttons">
@@ -137,22 +139,172 @@
         </div>
     </div>
 
+    <!-- Second Question -->
+    <div id="question2" class="question-container">
+        <p>2. 인생 맛집 포기 가능?</p>
+        <div class="image-grid">
+            <div class="image-option" onclick="toggleSelection(this)">
+                <img src="https://i.postimg.cc/tCqtR9hy/image.png" alt="Option 1">
+                <div class="level-text">level1 <span class="amount-red">10만원</span></div>
+                <div class="image-caption">밤새 정주행한 드라마 마지막회 평생 못보기</div>
+            </div>
+            <div class="image-option" onclick="toggleSelection(this)">
+                <img src="https://i.postimg.cc/SNwS7fmK/TOP3.png" alt="Option 2">
+                <div class="level-text">level2 <span class="amount-red">30만 원</span></div>
+                <div class="image-caption">인생 맛집 평생 포기</div>
+            </div>
+            <div class="image-option" onclick="toggleSelection(this)">
+                <img src="https://i.postimg.cc/26FGTGpN/1.png" alt="Option 3">
+                <div class="level-text">level3 <span class="amount-red">50만 원</span></div>
+                <div class="image-caption">1년간 찍은 사진 날려버리기</div>
+            </div>
+            <div class="image-option" onclick="toggleSelection(this)">
+                <img src="https://i.postimg.cc/MG2p4nZS/image.png" alt="Option 4">
+                <div class="level-text">level3 </div>
+                <div class="image-caption"> 포…포기</div>
+            </div>
+        </div>
+        <div class="center-buttons">
+            <button class="button prev-button" onclick="prevQuestion(2)">이전 문제</button>
+            <button class="button next-button" onclick="nextQuestion(2)">다음 문제</button>
+        </div>
+    </div>
+<!-- Third Question -->
+<div id="question3" class="question-container">
+    <p>3. 이렇게 입고 데이트 가능?</p>
+    <div class="image-grid">
+        <div class="image-option" onclick="toggleSelection(this)">
+            <img src="https://i.postimg.cc/QNm1hrPc/image.jpg" alt="Option 1">
+            <div class="level-text">level1 <span class="amount-red">20만원</span></div>
+            <div class="image-caption">꽃미남 모자 착장</div>
+        </div>
+        <div class="image-option" onclick="toggleSelection(this)">
+            <img src="https://i.postimg.cc/7Lp85cWV/image.jpg" alt="Option 2">
+            <div class="level-text">level2 <span class="amount-red">40만원</span></div>
+            <div class="image-caption">꽃미남 모자+멋쟁이 조끼</div>
+        </div>
+        <div class="image-option" onclick="toggleSelection(this)">
+            <img src="https://i.postimg.cc/668cjqTy/image.jpg" alt="Option 3">
+            <div class="level-text">level3 <span class="amount-red">60만원</span></div>
+            <div class="image-caption">꽃미남모자+멋쟁이 조끼랑 바지</div>
+        </div><div class="image-option" onclick="toggleSelection(this)">
+                <img src="https://i.postimg.cc/MG2p4nZS/image.png" alt="Option 4">
+                <div class="level-text">level3 </div>
+                <div class="image-caption"> 포…포기</div>
+    </div></div>
+    <div class="center-buttons">
+        <button class="button prev-button" onclick="prevQuestion(3)">이전 문제</button>
+        <button class="button next-button" onclick="nextQuestion(3)">다음 문제</button>
+    </div>
+</div>
+
+<!-- Fourth Question -->
+<div id="question4" class="question-container">
+    <p>4. 양말로 보온 가능?</p>
+    <div class="image-grid">
+        <div class="image-option" onclick="toggleSelection(this)">
+            <img src="https://i.postimg.cc/NGJQ7NS1/image.jpg" alt="Option 1">
+            <div class="level-text">level1 <span class="amount-red">30만원</span></div>
+            <div class="image-caption">어제 신은 양말 겨울 장갑으로 끼기</div>
+        </div>
+        <div class="image-option" onclick="toggleSelection(this)">
+            <img src="https://i.postimg.cc/Y9XjFtQF/image.jpg" alt="Option 2">
+            <div class="level-text">level2 <span class="amount-red">50만원</span></div>
+            <div class="image-caption">어제 신은 양말 겨울 목도리로 하기</div>
+        </div>
+        <div class="image-option" onclick="toggleSelection(this)">
+            <img src="https://i.postimg.cc/XqGF7rtq/image.jpg" alt="Option 3">
+            <div class="level-text">level3 <span class="amount-red">100만원</span></div>
+            <div class="image-caption">어제 신은 양말 겨울 마스크로 끼기</div></div><div class="image-option" onclick="toggleSelection(this)">
+                <img src="https://i.postimg.cc/MG2p4nZS/image.png" alt="Option 4">
+                <div class="level-text">level3 </div>
+                <div class="image-caption"> 포…포기</div></div>
+</div>
+    <div class="center-buttons">
+        <button class="button prev-button" onclick="prevQuestion(4)">이전 문제</button>
+        <button class="button next-button" onclick="nextQuestion(4)">다음 문제</button>
+    </div>
+</div>
+
+<!-- Fifth Question -->
+<div id="question5" class="question-container">
+    <p>5. 시어머니가 매주 교회에 같이 가면 월 500씩 준다고 한다</p>
+    <div class="image-grid">
+        <div class="image-option" onclick="toggleSelection(this)">
+            <img src="https://i.postimg.cc/N0LrxNkS/image.png" alt="Option 1">
+            <div class="level-text">level1 <span class="amount-red">월 500만원</span></div>
+            <div class="image-caption">기쁜 마음으로 매주 간다.</div>
+        </div>
+        <div class="image-option" onclick="toggleSelection(this)">
+            <img src="https://i.postimg.cc/Jz8hnpFZ/image.png" alt="Option 2">
+            <div class="level-text">level2 <span class="amount-red">월700만원</span></div>
+            <div class="image-caption">매주 성경공부도 가능</div>
+        </div>
+        <div class="image-option" onclick="toggleSelection(this)">
+            <img src="https://i.postimg.cc/q7mSP7ng/image.png" alt="Option 3">
+            <div class="level-text">level3 <span class="amount-red">월 900만원</span></div>
+            <div class="image-caption">매주 성가대 솔로무대까지 가능</div>
+</div><div class="image-option" onclick="toggleSelection(this)">
+                <img src="https://i.postimg.cc/MG2p4nZS/image.png" alt="Option 4">
+                <div class="level-text">level3 </div>
+                <div class="image-caption"> 포…포기</div></div>
+    </div>
+    <div class="center-buttons">
+        <button class="button prev-button" onclick="prevQuestion(5)">이전 문제</button>
+        <button class="button next-button" onclick="nextQuestion(5)">다음 문제</button>
+    </div>
+</div>
+
+<!-- Sixth Question -->
+<div id="question6" class="question-container">
+    <p>6. 남편이 새로운 사랑을 찾았다며 재산분할 외 별도 위자료를 제시하며 헤어져달라면?</p>
+    <div class="image-grid">
+        <div class="image-option" onclick="toggleSelection(this)">
+            <img src="https://i.postimg.cc/c1BS4dQ1/image.png" alt="Option 1">
+            <div class="level-text">level1 <span class="amount-red">+5억</span></div>
+            <div class="image-caption">다음날 도장 찍어준다.</div>
+        </div>
+        <div class="image-option" onclick="toggleSelection(this)">
+            <img src="https://i.postimg.cc/T3GC9W1g/image.png" alt="Option 2">
+            <div class="level-text">level2 <span class="amount-red">+7억</span></div>
+            <div class="image-caption">새로운 사랑 축복 가능.</div>
+        </div>
+        <div class="image-option" onclick="toggleSelection(this)">
+            <img src="https://i.postimg.cc/B6cxtm5z/image.png" alt="Option 3">
+            <div class="level-text">level3 <span class="amount-red">+9억</span></div>
+            <div class="image-caption">스드메 준비도 대신 해줌 ^^</div>
+        </div><div class="image-option" onclick="toggleSelection(this)">
+                <img src="https://i.postimg.cc/MG2p4nZS/image.png" alt="Option 4">
+                <div class="level-text">level3 </div>
+                <div class="image-caption"> 포…포기</div></div>
+    </div>
+    <div class="center-buttons">
+        <button class="button prev-button" onclick="prevQuestion(6)">이전 문제</button>
+        <button class="button next-button" onclick="nextQuestion(6)">다음 문제</button>
+    </div>
+</div>
+
     <script>
         let currentQuestion = 1;
-        let selectedElement = null;
 
         function nextQuestion(questionNumber) {
             document.getElementById(`question${questionNumber}`).classList.remove("active");
-            currentQuestion++;
-            document.getElementById(`question${currentQuestion}`).classList.add("active");
+            const nextQuestionId = questionNumber + 1;
+            document.getElementById(`question${nextQuestionId}`).classList.add("active");
+        }
+
+        function prevQuestion(questionNumber) {
+            document.getElementById(`question${questionNumber}`).classList.remove("active");
+            const prevQuestionId = questionNumber - 1;
+            document.getElementById(`question${prevQuestionId}`).classList.add("active");
         }
 
         function toggleSelection(element) {
-            if (selectedElement && selectedElement !== element) {
-                selectedElement.classList.remove("selected");
+            const selected = document.querySelector('.image-option.selected');
+            if (selected) {
+                selected.classList.remove("selected");
             }
-            element.classList.toggle("selected");
-            selectedElement = element.classList.contains("selected") ? element : null;
+            element.classList.add("selected");
         }
     </script>
 </body>
