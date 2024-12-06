@@ -17,15 +17,37 @@
         .title .text-red { color: red; }
         .title .text-yellow { color: #FFA500; }
         .title .text-green { color: green; }
-        .subtitle {
-            font-size: 20px;
-            color: gray;
-            margin-top: 0;
+        .level-indicator {
+            margin: 20px auto;
+            max-width: 600px;
+            height: 20px;
+            background-color: lightgray;
+            border-radius: 10px;
+            position: relative;
+        }
+        .level-progress {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease, background-color 0.5s ease;
+        }
+        .easy { background-color: green; width: 16.66%; }
+        .normal { background-color: yellow; width: 50%; }
+        .hard { background-color: orange; width: 83.33%; }
+        .hell { background-color: red; width: 100%; }
+        .level-label {
+            font-size: 14px;
+            margin-top: 5px;
+            display: flex;
+            justify-content: space-between;
+            max-width: 600px;
+            margin: 10px auto 0;
+        }
+        .level-label span {
+            font-weight: bold;
         }
         .question-container { 
             display: none; 
             margin: 20px;
-            text-align: left;
         }
         .question-container.active { 
             display: block; 
@@ -45,12 +67,8 @@
             background-color: #4CAF50;
         }
         .prev-button {
-            background-color: #FFA07A; /* Light orange color */
+            background-color: #FFA07A; 
             margin-right: 10px;
-        }
-        p { 
-            font-size: 18px; 
-            margin-bottom: 20px;
         }
         .image-grid {
             display: flex;
@@ -83,23 +101,6 @@
         .image-option:hover img {
             transform: scale(1.05);
         }
-        .level-text {
-            color: black;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        .amount-red {
-            color: red;
-            font-weight: bold;
-        }
-        .image-caption {
-            font-size: 16px;
-            font-family: 'Nanum Gothic', sans-serif;
-            margin-top: 5px;
-        }
-        .center-buttons {
-            text-align: center;
-        }
     </style>
 </head>
 <body>
@@ -107,7 +108,17 @@
     <h1 class="title">
         <span class="text-red">돈</span><span class="text-yellow">미</span><span class="text-green">새</span> 테스트
     </h1>
-    <div class="subtitle"></div>
+
+    <!-- 레벨바 -->
+    <div class="level-indicator">
+        <div id="levelProgress" class="level-progress easy"></div>
+    </div>
+    <div class="level-label">
+        <span>Easy</span>
+        <span>Normal</span>
+        <span>Hard</span>
+        <span>Hell</span>
+    </div>
     
     <!-- First Question -->
     <div id="question1" class="question-container active">
@@ -287,24 +298,29 @@
     <script>
         let currentQuestion = 1;
 
+        // 문제별 레벨 매핑 (1번 Easy, 2~3번 Normal, 4~5번 Hard, 6번 Hell)
+        const levels = ["easy", "normal", "normal", "hard", "hard", "hell"];
+
+        function updateLevelIndicator() {
+            const levelProgress = document.getElementById("levelProgress");
+            const levelClass = levels[currentQuestion - 1];
+            levelProgress.className = `level-progress ${levelClass}`;
+        }
+
         function nextQuestion(questionNumber) {
             document.getElementById(`question${questionNumber}`).classList.remove("active");
             const nextQuestionId = questionNumber + 1;
             document.getElementById(`question${nextQuestionId}`).classList.add("active");
+            currentQuestion = nextQuestionId;
+            updateLevelIndicator();
         }
 
         function prevQuestion(questionNumber) {
             document.getElementById(`question${questionNumber}`).classList.remove("active");
             const prevQuestionId = questionNumber - 1;
             document.getElementById(`question${prevQuestionId}`).classList.add("active");
-        }
-
-        function toggleSelection(element) {
-            const selected = document.querySelector('.image-option.selected');
-            if (selected) {
-                selected.classList.remove("selected");
-            }
-            element.classList.add("selected");
+            currentQuestion = prevQuestionId;
+            updateLevelIndicator();
         }
     </script>
 </body>
