@@ -17,40 +17,29 @@
         .title .text-red { color: red; }
         .title .text-yellow { color: #FFA500; }
         .title .text-green { color: green; }
-        .level-indicator {
-            margin: 20px auto;
-            max-width: 600px;
-            height: 20px;
-            background-color: lightgray;
-            border-radius: 10px;
-            position: relative;
-        }
-        .level-progress {
-            height: 100%;
-            border-radius: 10px;
-            transition: width 0.5s ease, background-color 0.5s ease;
-        }
-        .easy { background-color: green; width: 16.66%; }
-        .normal { background-color: yellow; width: 50%; }
-        .hard { background-color: orange; width: 83.33%; }
-        .hell { background-color: red; width: 100%; }
-        .level-label {
-            font-size: 14px;
-            margin-top: 5px;
+        .step-indicator {
+            margin: 30px auto;
+            font-size: 12px;
             display: flex;
             justify-content: space-between;
-            max-width: 600px;
-            margin: 10px auto 0;
+            max-width: 300px;
         }
-        .level-label span {
-            font-weight: bold;
+        .step-indicator span {
+            font-weight: normal;
         }
         .question-container { 
             display: none; 
-            margin: 20px;
+            margin: 40px;
         }
         .question-container.active { 
             display: block; 
+        }
+        .question-text { 
+            font-size: 40px; /* 크기 증가 */
+            font-weight: bold; 
+            text-align: left; /* 왼쪽 정렬 */
+            margin-bottom: 30px;
+            padding-left: 20px; /* 왼쪽 여백 추가 */
         }
         .button {
             margin-top: 20px; 
@@ -73,7 +62,7 @@
         .image-grid {
             display: flex;
             overflow-x: auto;
-            gap: 20px;
+            gap: 30px;
             padding: 10px;
             scroll-behavior: smooth;
         }
@@ -94,6 +83,12 @@
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s, border-color 0.3s;
         }
+        .image-option .level-text {
+            margin-top: 10px;
+        }
+        .image-option .image-caption {
+            margin-top: 10px;
+        }
         .image-option.selected img {
             background-color: #e0e0e0;
             border-color: red;
@@ -109,15 +104,14 @@
         <span class="text-red">돈</span><span class="text-yellow">미</span><span class="text-green">새</span> 테스트
     </h1>
 
-    <!-- 레벨바 -->
-    <div class="level-indicator">
-        <div id="levelProgress" class="level-progress easy"></div>
-    </div>
-    <div class="level-label">
-        <span>Easy</span>
-        <span>Normal</span>
-        <span>Hard</span>
-        <span>Hell</span>
+    <!-- 단계 표시 -->
+    <div class="step-indicator">
+        <span id="step1">1단계</span>
+        <span id="step2">2단계</span>
+        <span id="step3">3단계</span>
+        <span id="step4">4단계</span>
+        <span id="step5">5단계</span>
+        <span id="step6">6단계</span>
     </div>
     
     <!-- First Question -->
@@ -149,7 +143,6 @@
             <button class="button next-button" onclick="nextQuestion(1)">다음 문제</button>
         </div>
     </div>
-
     <!-- Second Question -->
     <div id="question2" class="question-container">
         <p>2. 인생 맛집 포기 가능?</p>
@@ -291,28 +284,60 @@
     </div>
     <div class="center-buttons">
         <button class="button prev-button" onclick="prevQuestion(6)">이전 문제</button>
-        <button class="button next-button" onclick="nextQuestion(6)">다음 문제</button>
+        <button class="button next-button" onclick="nextQuestion(6)">결과 확인하기</button>
     </div>
 </div>
 
+  <!-- 결과 화면 -->
+    <div id="result" class="question-container">
+        <h2>테스트 결과</h2>
+        <img id="resultImage" src="" alt="결과 이미지" class="result-image">
+        <p id="resultText" class="result-text"></p>
+    </div>
+
     <script>
         let currentQuestion = 1;
+        const scores = []; // 사용자 선택 점수 저장
+        const thresholds = [9, 13, 17, 21]; // 점수 기준
+        const steps = ["step1", "step2", "step3", "step4", "step5", "step6"]; // 단계 ID
+        const results = [
+            {
+                text: "돈을 크게 중요하게 여기지 않는 사람입니다.",
+                image: "https://via.placeholder.com/300?text=1단계"
+            },
+            {
+                text: "돈을 조금 중요하게 여기는 사람입니다.",
+                image: "https://via.placeholder.com/300?text=2단계"
+            },
+            {
+                text: "돈을 보통 정도로 중요하게 여기는 사람입니다.",
+                image: "https://via.placeholder.com/300?text=3단계"
+            },
+            {
+                text: "돈을 중요하게 여기는 사람입니다.",
+                image: "https://via.placeholder.com/300?text=4단계"
+            },
+            {
+                text: "돈이 가장 중요한 사람입니다.",
+                image: "https://via.placeholder.com/300?text=5단계"
+            }
+        ];
 
-        // 문제별 레벨 매핑 (1번 Easy, 2~3번 Normal, 4~5번 Hard, 6번 Hell)
-        const levels = ["easy", "normal", "normal", "hard", "hard", "hell"];
-
-        function updateLevelIndicator() {
-            const levelProgress = document.getElementById("levelProgress");
-            const levelClass = levels[currentQuestion - 1];
-            levelProgress.className = `level-progress ${levelClass}`;
+        function selectOption(question, score) {
+            scores[question - 1] = score; // 선택한 점수 저장
         }
 
         function nextQuestion(questionNumber) {
             document.getElementById(`question${questionNumber}`).classList.remove("active");
             const nextQuestionId = questionNumber + 1;
-            document.getElementById(`question${nextQuestionId}`).classList.add("active");
-            currentQuestion = nextQuestionId;
-            updateLevelIndicator();
+
+            if (nextQuestionId <= 6) {
+                document.getElementById(`question${nextQuestionId}`).classList.add("active");
+                currentQuestion = nextQuestionId;
+                updateStepIndicator(); // 단계 업데이트
+            } else {
+                showResult(); // 마지막 문제 후 결과 화면 표시
+            }
         }
 
         function prevQuestion(questionNumber) {
@@ -320,8 +345,47 @@
             const prevQuestionId = questionNumber - 1;
             document.getElementById(`question${prevQuestionId}`).classList.add("active");
             currentQuestion = prevQuestionId;
-            updateLevelIndicator();
+            updateStepIndicator(); // 단계 업데이트
         }
+
+        function updateStepIndicator() {
+            // 모든 단계를 기본 상태로 초기화
+            steps.forEach((step) => {
+                document.getElementById(step).style.fontWeight = "normal";
+            });
+
+            // 현재 단계만 굵게 표시
+            const currentStep = steps[currentQuestion - 1];
+            document.getElementById(currentStep).style.fontWeight = "bold";
+        }
+
+        function showResult() {
+            // 단계 숨기기
+            document.querySelector(".step-indicator").style.display = "none";
+
+            const totalScore = scores.reduce((a, b) => a + b, 0);
+            let resultIndex;
+            if (totalScore <= thresholds[0]) {
+                resultIndex = 0;
+            } else if (totalScore <= thresholds[1]) {
+                resultIndex = 1;
+            } else if (totalScore <= thresholds[2]) {
+                resultIndex = 2;
+            } else if (totalScore <= thresholds[3]) {
+                resultIndex = 3;
+            } else {
+                resultIndex = 4;
+            }
+
+            const result = results[resultIndex];
+            document.getElementById("resultImage").src = result.image;
+            document.getElementById("resultText").textContent = result.text;
+
+            document.getElementById("result").classList.add("active");
+        }
+
+        // 초기화
+        updateStepIndicator();
     </script>
 </body>
 </html>
