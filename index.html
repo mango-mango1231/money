@@ -34,13 +34,13 @@
         .question-container.active { 
             display: block; 
         }
-.question-text { 
-    font-size: 20px; /* 크기 기존 대비 +5 */
-    font-weight: bold; /* 굵게 표시 */
-    text-align: left; /* 왼쪽 정렬 */
-    margin-bottom: 30px;
-    padding-left: 20px; /* 왼쪽 여백 추가 */
-}
+        .question-text { 
+            font-size: 32px; /* 크기 확실히 키움 */
+            font-weight: bold; /* 굵게 표시 */
+            text-align: left; /* 왼쪽 정렬 */
+            margin-bottom: 30px;
+            padding-left: 20px; /* 왼쪽 여백 추가 */
+        }
         .button {
             margin-top: 20px; 
             padding: 15px 30px; 
@@ -58,6 +58,12 @@
         .prev-button {
             background-color: #FFA07A; 
             margin-right: 10px;
+        }
+        #resultButton {
+            background-color: blue !important; /* 빨간색 배경 */
+            color: white; /* 텍스트 색상 흰색 */
+            border: none; /* 기본 테두리 제거 */
+            cursor: pointer; /* 클릭 커서 표시 */
         }
         .image-grid {
             display: flex;
