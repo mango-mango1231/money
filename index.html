@@ -5,89 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>돈미새 테스트</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Nanum+Myeongjo&family=Nanum+Gothic&display=swap');
+        body { 
+            font-family: 'Noto Sans KR', sans-serif; 
+            text-align: center;
         }
-
         .container {
             display: none;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #f4f4f4;
         }
-
         .container.active {
             display: block;
         }
-
-        .background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://i.postimg.cc/tg9WcjtM/background.png') no-repeat center center;
-            background-size: cover;
+        .title {
+            font-size: 28px;
+            margin-bottom: 5px;
         }
-
-        .title img {
-            position: absolute;
-            top: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            max-width: 80%;
-            height: auto;
+        .title .text-red { color: red; }
+        .title .text-yellow { color: #FFA500; }
+        .title .text-green { color: green; }
+        .step-indicator {
+            margin: 30px auto;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            max-width: 300px;
         }
-
-        .main-image img {
-            position: absolute;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 70%;
-            height: auto;
+        .step-indicator span {
+            font-weight: normal;
         }
-
-        .button img {
-            position: absolute;
-            bottom: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            max-width: 50%;
+        .question-container { 
+            display: none; 
+            margin: 40px;
+        }
+        .question-container.active { 
+            display: block; 
+        }
+        .question-text { 
+            font-size: 32px;
+            font-weight: bold;
+            text-align: left;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+        .button {
+            margin-top: 20px; 
+            padding: 15px 30px; 
+            color: white; 
+            border: none; 
+            border-radius: 20px;
+            cursor: pointer; 
+            font-size: 18px;
+        }
+        .next-button {
+            background-color: #4CAF50;
+        }
+        .prev-button {
+            background-color: #FFA07A; 
+            margin-right: 10px;
+        }
+        #resultButton {
+            background-color: blue !important;
+            color: white;
+            border: none;
             cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .button img:hover {
-            transform: translateX(-50%) scale(1.05);
         }
     </style>
 </head>
 <body>
     <!-- 인트로 화면 -->
-    <div class="container active" id="intro">
-        <div class="background"></div>
-        <div class="title">
-            <img src="https://i.postimg.cc/vZs0GCtW/title.png" alt="상단 제목">
-        </div>
-        <div class="main-image">
-            <img src="https://i.postimg.cc/qMnmVpyJ/main-image.png" alt="메인 이미지">
-        </div>
-        <div class="button">
-            <img src="https://i.postimg.cc/HL03Jz3f/button-png.png" alt="시작 버튼" onclick="startTest()">
-        </div>
-    </div>
-
-    <!-- 기존 HTML: 질문 화면 시작 -->
-    <div id="main-test">
+    <div id="intro" class="container active">
         <h1 class="title">
             <span class="text-red">돈</span><span class="text-yellow">미</span><span class="text-green">새</span> 테스트
         </h1>
+        <p>당신의 돈미새 성향을 알아보세요!</p>
+        <button class="button next-button" onclick="startTest()">시작하기</button>
+    </div>
 
-        <!-- 단계 표시 -->
+    <!-- 설문 질문 화면 -->
+    <div id="main-content" class="container">
+        <h1 class="title">
+            <span class="text-red">돈</span><span class="text-yellow">미</span><span class="text-green">새</span> 테스트
+        </h1>
         <div class="step-indicator">
             <span id="step1">1단계</span>
             <span id="step2">2단계</span>
@@ -97,35 +95,33 @@
             <span id="step6">6단계</span>
         </div>
         
-    
-    <!-- First Question -->
-    <div id="question1" class="question-container active">
-        <p class="question-text">1. 매일 아침 부장님(교수님)께 일주일동안 이렇게 아침 인사 가능?</p>
-        <div class="image-grid">
-            <div class="image-option" onclick="toggleSelection(this)">
-                <img src="https://i.postimg.cc/MXLY7hBz/image.png" alt="Option 1">
-                <div class="level-text">level1 <span class="amount-red" style="color: red;">5만원</span></div>
-                <div class="image-caption">존경하는 부장님<br>오늘도 멋지십니다!!!</div>
+        <div id="question1" class="question-container active">
+            <p class="question-text">1. 매일 아침 부장님(교수님)께 일주일동안 이렇게 아침 인사 가능?</p>
+            <div class="image-grid">
+                <div class="image-option" onclick="toggleSelection(this)">
+                    <img src="https://i.postimg.cc/MXLY7hBz/image.png" alt="Option 1">
+                    <div class="level-text">level1 <span class="amount-red" style="color: red;">5만원</span></div>
+                    <div class="image-caption">존경하는 부장님<br>오늘도 멋지십니다!!!</div>
+                </div>
+                <div class="image-option" onclick="toggleSelection(this)">
+                    <img src="https://i.postimg.cc/dkt96FnV/image.png " alt="Option 2">
+                    <div class="level-text">level1 <span class="amount-red" style="color: red;">10만원</span></div>
+                    <div class="image-caption">앙증맞은 손하트 추가</div>
+                </div>
+                <div class="image-option" onclick="toggleSelection(this)">
+                    <img src="https://i.postimg.cc/0zRd3DZ3/image.png" alt="Option 3">
+                    <div class="level-text">level2 <span class="amount-red" style="color: red;">15만원</span></div>
+                    <div class="image-caption">손하트 받고 한 바퀴 턴 추가</div>
+                </div>
+                <div class="image-option" onclick="toggleSelection(this)">
+                    <img src="https://i.postimg.cc/MG2p4nZS/image.png" alt="Option 4">
+                    <div class="level-text">무리데쓰 </div>
+                    <div class="image-caption">포…포기</div>
+                </div>
             </div>
-            <div class="image-option" onclick="toggleSelection(this)">
-                <img src="https://i.postimg.cc/dkt96FnV/image.png " alt="Option 2">
-                <div class="level-text">level1 <span class="amount-red" style="color: red;">10만원</span></div>
-                <div class="image-caption">앙증맞은 손하트 추가</div>
+            <div class="center-buttons">
+                <button class="button next-button" onclick="nextQuestion(1)">다음 문제</button>
             </div>
-            <div class="image-option" onclick="toggleSelection(this)">
-                <img src="https://i.postimg.cc/0zRd3DZ3/image.png" alt="Option 3">
-                <div class="level-text">level2 <span class="amount-red" style="color: red;">15만원</span></div>
-                <div class="image-caption">손하트 받고 한 바퀴 턴 추가</div>
-            </div>
-            <div class="image-option" onclick="toggleSelection(this)">
-                <img src="https://i.postimg.cc/MG2p4nZS/image.png" alt="Option 4">
-                <div class="level-text">무리데쓰 </div>
-                <div class="image-caption">포…포기</div>
-            </div>
-        </div>
-        <div class="center-buttons">
-            <button class="button next-button" onclick="nextQuestion(1)">다음 문제</button>
-        </div>
     </div>
     <!-- Second Question -->
     <div id="question2" class="question-container">
@@ -280,37 +276,105 @@
         <img id="resultImage" src="" alt="결과 이미지" class="result-image">
         <p id="resultText" class="result-text"></p>
     </div>
-     <script>
-        // 인트로에서 질문 화면으로 전환
-        function startTest() {
-            document.getElementById('intro').classList.remove('active'); // 인트로 숨김
-            document.getElementById('main-test').classList.add('active'); // 메인 질문 화면 표시
+
+    <script>
+        let currentQuestion = 1;
+        const scores = []; // 사용자 선택 점수 저장
+        const thresholds = [9, 13, 17, 21]; // 점수 기준
+        const steps = ["step1", "step2", "step3", "step4", "step5", "step6"]; // 단계 ID
+        const results = [
+            {
+                text: "돈을 크게 중요하게 여기지 않는 사람입니다.",
+                image: "https://via.placeholder.com/300?text=1단계"
+            },
+            {
+                text: "돈을 조금 중요하게 여기는 사람입니다.",
+                image: "https://via.placeholder.com/300?text=2단계"
+            },
+            {
+                text: "돈을 보통 정도로 중요하게 여기는 사람입니다.",
+                image: "https://via.placeholder.com/300?text=3단계"
+            },
+            {
+                text: "돈을 중요하게 여기는 사람입니다.",
+                image: "https://via.placeholder.com/300?text=4단계"
+            },
+            {
+                text: "돈이 가장 중요한 사람입니다.",
+                image: "https://via.placeholder.com/300?text=5단계"
+            }
+        ];
+
+        function selectOption(question, score) {
+            scores[question - 1] = score; // 선택한 점수 저장
         }
 
-        // 다음 질문으로 이동
         function nextQuestion(questionNumber) {
             document.getElementById(`question${questionNumber}`).classList.remove("active");
             const nextQuestionId = questionNumber + 1;
 
             if (nextQuestionId <= 6) {
                 document.getElementById(`question${nextQuestionId}`).classList.add("active");
+                currentQuestion = nextQuestionId;
+                updateStepIndicator(); // 단계 업데이트
             } else {
-                showResult();
+                showResult(); // 마지막 문제 후 결과 화면 표시
             }
         }
 
-        // 결과 화면 표시
+        function prevQuestion(questionNumber) {
+            document.getElementById(`question${questionNumber}`).classList.remove("active");
+            const prevQuestionId = questionNumber - 1;
+            document.getElementById(`question${prevQuestionId}`).classList.add("active");
+            currentQuestion = prevQuestionId;
+            updateStepIndicator(); // 단계 업데이트
+        }
+
+        function updateStepIndicator() {
+            // 모든 단계를 기본 상태로 초기화
+            steps.forEach((step) => {
+                document.getElementById(step).style.fontWeight = "normal";
+            });
+
+            // 현재 단계만 굵게 표시
+            const currentStep = steps[currentQuestion - 1];
+            document.getElementById(currentStep).style.fontWeight = "bold";
+        }
+
         function showResult() {
+            // 단계 숨기기
             document.querySelector(".step-indicator").style.display = "none";
 
             const totalScore = scores.reduce((a, b) => a + b, 0);
-            const resultIndex = thresholds.findIndex(threshold => totalScore <= threshold);
-            const result = results[resultIndex >= 0 ? resultIndex : results.length - 1];
+            let resultIndex;
+            if (totalScore <= thresholds[0]) {
+                resultIndex = 0;
+            } else if (totalScore <= thresholds[1]) {
+                resultIndex = 1;
+            } else if (totalScore <= thresholds[2]) {
+                resultIndex = 2;
+            } else if (totalScore <= thresholds[3]) {
+                resultIndex = 3;
+            } else {
+                resultIndex = 4;
+            }
 
+            const result = results[resultIndex];
             document.getElementById("resultImage").src = result.image;
             document.getElementById("resultText").textContent = result.text;
+
             document.getElementById("result").classList.add("active");
         }
+
+        // 초기화
+        updateStepIndicator();
     </script>
+<!-- 새로 추가된 스크립트 -->
+<script>
+    function startTest() {
+        document.getElementById('intro').classList.remove('active');
+        document.getElementById('main-content').classList.add('active');
+    }
+</script>
 </body>
 </html>
