@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>설문조사 인트로</title>
+    <title>돈미새 테스트</title>
     <style>
-        /* Reset and Base Styles */
         body {
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
-            background: #f4f4f4;
-            overflow: hidden;
         }
 
-        /* Container for Intro Screen */
-        .intro-container {
-            position: relative;
+        .container {
+            display: none;
+            position: absolute;
             width: 100%;
-            height: 100vh;
+            height: 100%;
+            background: #f4f4f4;
         }
 
-        /* Background Image */
+        .container.active {
+            display: block;
+        }
+
         .background {
             position: absolute;
             top: 0;
@@ -30,10 +31,8 @@
             height: 100%;
             background: url('https://i.postimg.cc/tg9WcjtM/background.png') no-repeat center center;
             background-size: cover;
-            z-index: -1;
         }
 
-        /* Title Image */
         .title img {
             position: absolute;
             top: 10%;
@@ -43,7 +42,6 @@
             height: auto;
         }
 
-        /* Main Image */
         .main-image img {
             position: absolute;
             top: 40%;
@@ -51,93 +49,37 @@
             transform: translate(-50%, -50%);
             max-width: 70%;
             height: auto;
-            animation: fade-in 1.5s ease-in-out;
         }
 
-        /* Button */
         .button img {
             position: absolute;
             bottom: 10%;
             left: 50%;
             transform: translateX(-50%);
             max-width: 50%;
-            height: auto;
             cursor: pointer;
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease;
         }
 
         .button img:hover {
             transform: translateX(-50%) scale(1.05);
         }
-
-        /* Animation */
-        @keyframes fade-in {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Media Queries for Responsiveness */
-        @media (max-width: 768px) {
-            .title img {
-                top: 8%;
-                max-width: 90%;
-            }
-            .main-image img {
-                top: 35%;
-                max-width: 80%;
-            }
-            .button img {
-                max-width: 60%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .title img {
-                top: 5%;
-                max-width: 95%;
-            }
-            .main-image img {
-                top: 30%;
-                max-width: 85%;
-            }
-            .button img {
-                max-width: 70%;
-            }
-        }
     </style>
 </head>
 <body>
-
-<!-- Intro Screen -->
-<div class="intro-container" id="intro">
-    <div class="background"></div>
-    <div class="title">
-        <img src="https://i.postimg.cc/vZs0GCtW/title.png" alt="상단 제목">
+    <!-- 인트로 화면 -->
+    <div class="container active" id="intro">
+        <div class="background"></div>
+        <div class="title">
+            <img src="https://i.postimg.cc/vZs0GCtW/title.png" alt="상단 제목">
+        </div>
+        <div class="main-image">
+            <img src="https://i.postimg.cc/qMnmVpyJ/main-image.png" alt="메인 이미지">
+        </div>
+        <div class="button">
+            <img src="https://i.postimg.cc/HL03Jz3f/button-png.png" alt="시작 버튼" onclick="startTest()">
+        </div>
     </div>
-    <div class="main-image">
-        <img src="https://i.postimg.cc/qMnmVpyJ/main-image.png" alt="중앙 메인 이미지">
-    </div>
-    <div class="button">
-        <img src="https://i.postimg.cc/HL03Jz3f/button-png.png" alt="시작 버튼" onclick="showQuestion1()">
-    </div>
-</div>
-
-<!-- Question 1 Screen (Initially Hidden) -->
-<div class="question-container" id="question1" style="display: none;">
-    <p style="text-align: center; font-size: 24px; margin-top: 20%;">질문 1: 당신의 선택은?</p>
-</div>
-
-<script>
-    // Function to transition from intro screen to question 1
-    function showQuestion1() {
-        document.getElementById('intro').style.display = 'none'; // Hide intro screen
-        document.getElementById('question1').style.display = 'block'; // Show question 1
-    }
-</script>
 
     <h1 class="title">
         <span class="text-red">돈</span><span class="text-yellow">미</span><span class="text-green">새</span> 테스트
@@ -335,39 +277,25 @@
         <img id="resultImage" src="" alt="결과 이미지" class="result-image">
         <p id="resultText" class="result-text"></p>
     </div>
-
     <script>
         let currentQuestion = 1;
-        const scores = []; // 사용자 선택 점수 저장
-        const thresholds = [9, 13, 17, 21]; // 점수 기준
-        const steps = ["step1", "step2", "step3", "step4", "step5", "step6"]; // 단계 ID
+        const scores = [];
+        const thresholds = [9, 13, 17, 21];
         const results = [
-            {
-                text: "돈을 크게 중요하게 여기지 않는 사람입니다.",
-                image: "https://via.placeholder.com/300?text=1단계"
-            },
-            {
-                text: "돈을 조금 중요하게 여기는 사람입니다.",
-                image: "https://via.placeholder.com/300?text=2단계"
-            },
-            {
-                text: "돈을 보통 정도로 중요하게 여기는 사람입니다.",
-                image: "https://via.placeholder.com/300?text=3단계"
-            },
-            {
-                text: "돈을 중요하게 여기는 사람입니다.",
-                image: "https://via.placeholder.com/300?text=4단계"
-            },
-            {
-                text: "돈이 가장 중요한 사람입니다.",
-                image: "https://via.placeholder.com/300?text=5단계"
-            }
+            { text: "돈을 크게 중요하게 여기지 않는 사람입니다.", image: "https://via.placeholder.com/300?text=1단계" },
+            { text: "돈을 조금 중요하게 여기는 사람입니다.", image: "https://via.placeholder.com/300?text=2단계" },
+            { text: "돈을 보통 정도로 중요하게 여기는 사람입니다.", image: "https://via.placeholder.com/300?text=3단계" },
+            { text: "돈을 중요하게 여기는 사람입니다.", image: "https://via.placeholder.com/300?text=4단계" },
+            { text: "돈이 가장 중요한 사람입니다.", image: "https://via.placeholder.com/300?text=5단계" }
         ];
 
-        function selectOption(question, score) {
-            scores[question - 1] = score; // 선택한 점수 저장
+        // 인트로에서 질문 화면으로 전환
+        function startTest() {
+            document.getElementById('intro').classList.remove('active');
+            document.getElementById('main-test').classList.add('active');
         }
 
+        // 다음 질문으로 이동
         function nextQuestion(questionNumber) {
             document.getElementById(`question${questionNumber}`).classList.remove("active");
             const nextQuestionId = questionNumber + 1;
@@ -375,58 +303,33 @@
             if (nextQuestionId <= 6) {
                 document.getElementById(`question${nextQuestionId}`).classList.add("active");
                 currentQuestion = nextQuestionId;
-                updateStepIndicator(); // 단계 업데이트
+                updateStepIndicator();
             } else {
-                showResult(); // 마지막 문제 후 결과 화면 표시
+                showResult();
             }
         }
 
-        function prevQuestion(questionNumber) {
-            document.getElementById(`question${questionNumber}`).classList.remove("active");
-            const prevQuestionId = questionNumber - 1;
-            document.getElementById(`question${prevQuestionId}`).classList.add("active");
-            currentQuestion = prevQuestionId;
-            updateStepIndicator(); // 단계 업데이트
-        }
-
-        function updateStepIndicator() {
-            // 모든 단계를 기본 상태로 초기화
-            steps.forEach((step) => {
-                document.getElementById(step).style.fontWeight = "normal";
-            });
-
-            // 현재 단계만 굵게 표시
-            const currentStep = steps[currentQuestion - 1];
-            document.getElementById(currentStep).style.fontWeight = "bold";
-        }
-
+        // 결과 화면 표시
         function showResult() {
-            // 단계 숨기기
             document.querySelector(".step-indicator").style.display = "none";
 
             const totalScore = scores.reduce((a, b) => a + b, 0);
-            let resultIndex;
-            if (totalScore <= thresholds[0]) {
-                resultIndex = 0;
-            } else if (totalScore <= thresholds[1]) {
-                resultIndex = 1;
-            } else if (totalScore <= thresholds[2]) {
-                resultIndex = 2;
-            } else if (totalScore <= thresholds[3]) {
-                resultIndex = 3;
-            } else {
-                resultIndex = 4;
-            }
+            const resultIndex = thresholds.findIndex(threshold => totalScore <= threshold);
+            const result = results[resultIndex >= 0 ? resultIndex : results.length - 1];
 
-            const result = results[resultIndex];
             document.getElementById("resultImage").src = result.image;
             document.getElementById("resultText").textContent = result.text;
-
             document.getElementById("result").classList.add("active");
         }
 
-        // 초기화
-        updateStepIndicator();
+        function updateStepIndicator() {
+            const steps = ["step1", "step2", "step3", "step4", "step5", "step6"];
+            steps.forEach(step => {
+                document.getElementById(step).style.fontWeight = "normal";
+            });
+            const currentStep = steps[currentQuestion - 1];
+            if (currentStep) document.getElementById(currentStep).style.fontWeight = "bold";
+        }
     </script>
 </body>
 </html>
