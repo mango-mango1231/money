@@ -3,125 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>돈미새 테스트</title>
+    <title>설문조사 인트로</title>
     <style>
+        /* Reset and Base Styles */
         body {
             margin: 0;
             padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: #f4f4f4;
             overflow: hidden;
-            font-family: Arial, sans-serif;
         }
 
-        .container {
+        /* Container for Intro Screen */
+        .intro-container {
             position: relative;
             width: 100%;
             height: 100vh;
         }
 
+        /* Background Image */
         .background {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://i.postimg.cc/tg9WcjtM/background.png') no-repeat center center fixed;
+            background: url('https://i.postimg.cc/tg9WcjtM/background.png') no-repeat center center;
             background-size: cover;
             z-index: -1;
         }
 
+        /* Title Image */
         .title img {
             position: absolute;
-            top: 5%;
+            top: 10%;
             left: 50%;
             transform: translateX(-50%);
-            max-width: 90%;
+            max-width: 80%;
             height: auto;
         }
 
+        /* Main Image */
         .main-image img {
             position: absolute;
-            top: 50%;
+            top: 40%;
             left: 50%;
             transform: translate(-50%, -50%);
             max-width: 70%;
             height: auto;
+            animation: fade-in 1.5s ease-in-out;
         }
 
+        /* Button */
         .button img {
             position: absolute;
-            bottom: 5%;
+            bottom: 10%;
             left: 50%;
             transform: translateX(-50%);
-            max-width: 40%;
+            max-width: 50%;
             height: auto;
             cursor: pointer;
+            transition: transform 0.3s ease-in-out;
         }
 
-        .question-container {
-            display: none;
-            margin: 40px;
+        .button img:hover {
+            transform: translateX(-50%) scale(1.05);
         }
 
-        .question-container.active {
-            display: block;
+        /* Animation */
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .title img {
+                top: 8%;
+                max-width: 90%;
+            }
+            .main-image img {
+                top: 35%;
+                max-width: 80%;
+            }
+            .button img {
+                max-width: 60%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title img {
+                top: 5%;
+                max-width: 95%;
+            }
+            .main-image img {
+                top: 30%;
+                max-width: 85%;
+            }
+            .button img {
+                max-width: 70%;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="background"></div>
-        <div class="title">
-            <img src="https://i.postimg.cc/vZs0GCtW/title.png" alt="상단 제목">
-        </div>
-        <div class="main-image">
-            <img src="https://i.postimg.cc/qMnmVpyJ/main-image.png" alt="중앙 메인 이미지">
-        </div>
-        <div class="button">
-            <img src="https://i.postimg.cc/HL03Jz3f/button-png.png" alt="하단 버튼" onclick="nextQuestion(1)">
-        </div>
+
+<!-- Intro Screen -->
+<div class="intro-container" id="intro">
+    <div class="background"></div>
+    <div class="title">
+        <img src="https://i.postimg.cc/vZs0GCtW/title.png" alt="상단 제목">
     </div>
+    <div class="main-image">
+        <img src="https://i.postimg.cc/qMnmVpyJ/main-image.png" alt="중앙 메인 이미지">
+    </div>
+    <div class="button">
+        <img src="https://i.postimg.cc/HL03Jz3f/button-png.png" alt="시작 버튼" onclick="showQuestion1()">
+    </div>
+</div>
+
+<!-- Question 1 Screen (Initially Hidden) -->
+<div class="question-container" id="question1" style="display: none;">
+    <p style="text-align: center; font-size: 24px; margin-top: 20%;">질문 1: 당신의 선택은?</p>
+</div>
+
 <script>
-    let currentQuestion = 1;
-
-    // 다음 질문으로 이동
-    function nextQuestion(questionNumber) {
-        document.getElementById(`question${questionNumber}`).classList.remove("active");
-        const nextQuestionId = questionNumber + 1;
-
-        if (nextQuestionId <= 6) {
-            document.getElementById(`question${nextQuestionId}`).classList.add("active");
-            currentQuestion = nextQuestionId;
-            updateStepIndicator(); // 단계 업데이트
-        } else {
-            showResult(); // 마지막 문제 후 결과 화면 표시
-        }
-    }
-
-    // 이전 질문으로 이동
-    function prevQuestion(questionNumber) {
-        document.getElementById(`question${questionNumber}`).classList.remove("active");
-        const prevQuestionId = questionNumber - 1;
-        document.getElementById(`question${prevQuestionId}`).classList.add("active");
-        currentQuestion = prevQuestionId;
-        updateStepIndicator(); // 단계 업데이트
-    }
-
-    // 현재 단계 표시 업데이트
-    function updateStepIndicator() {
-        const steps = ["step1", "step2", "step3", "step4", "step5", "step6"];
-        steps.forEach((step) => {
-            document.getElementById(step).style.fontWeight = "normal";
-        });
-
-        const currentStep = steps[currentQuestion - 1];
-        document.getElementById(currentStep).style.fontWeight = "bold";
-    }
-
-    // 결과 화면 표시
-    function showResult() {
-        document.querySelector(".step-indicator").style.display = "none";
-        const totalScore = 0; // 점수 계산 로직 추가 가능
-        alert("테스트 결과: " + totalScore + "점");
+    // Function to transition from intro screen to question 1
+    function showQuestion1() {
+        document.getElementById('intro').style.display = 'none'; // Hide intro screen
+        document.getElementById('question1').style.display = 'block'; // Show question 1
     }
 </script>
 
