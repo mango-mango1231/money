@@ -5,63 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thumbnail Example</title>
     <style>
-        body {
+        /* 기본 스타일: 스크롤 제거, 전체 화면 채우기 */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            overflow: hidden; /* 스크롤 제거 */
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background: url('https://i.postimg.cc/tg9WcjtM/background.png') no-repeat center center/cover;
+            background: url('https://i.postimg.cc/tg9WcjtM/background.png') no-repeat center center;
+            background-size: cover; /* 배경 이미지 반응형 크기 조정 */
         }
+
+        /* 컨테이너 스타일 */
         .thumbnail {
-            text-align: center;
             position: relative;
             width: 100%;
-            max-width: 600px;
-            /* height 추가 */
-            height: 100vh;
+            height: 100vh; /* 뷰포트 전체 높이 */
+            max-width: 600px; /* 최대 너비 제한 */
         }
+
         .thumbnail img {
+            display: block;
             max-width: 100%;
             height: auto;
-            display: block;
             margin: 0 auto;
         }
-        /* .title 수정 */
+
+        /* 제목 이미지 */
         .thumbnail .title {
             position: absolute;
-            top: 20px;
+            top: 5%; /* 화면 상단에서 5% */
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
+            width: 60%; /* 이미지 너비 비율 설정 */
         }
-        /* .main-image 수정 */
+
+        /* 메인 이미지 */
         .thumbnail .main-image {
-            position: relative;
-            margin-top: 150px; /* 상단 마진 늘림 */
+            position: absolute;
+            top: 50%; /* 화면의 중앙 위치 */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+            width: 80%; /* 이미지 너비 비율 설정 */
         }
+
+        /* 버튼 이미지 */
         .thumbnail .button {
             position: absolute;
-            bottom: 20px;
+            bottom: 5%; /* 화면 하단에서 5% */
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
+            width: 50%; /* 버튼 이미지 크기 */
         }
     </style>
 </head>
 <body>
     <div class="thumbnail">
+        <!-- 제목 이미지 -->
         <div class="title">
             <img src="https://i.postimg.cc/vZs0GCtW/title.png" alt="Title">
         </div>
+        <!-- 메인 이미지 -->
         <div class="main-image">
             <img src="https://i.postimg.cc/qMnmVpyJ/main-image.png" alt="Main Image">
         </div>
+        <!-- 버튼 이미지 -->
         <div class="button">
             <img src="https://i.postimg.cc/HL03Jz3f/button-png.png" alt="Button" onclick="startTest()">
         </div>
     </div>
+
     <script>
         function startTest() {
             window.location.href = "test.html"; // 테스트 페이지로 이동
