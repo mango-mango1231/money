@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thumbnail Example</title>
     <style>
-        /* 기본 스타일: 스크롤 제거, 전체 화면 채우기 */
+        /* 기본 스타일 */
         * {
             margin: 0;
             padding: 0;
@@ -23,53 +23,51 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh; /* 사파리 뷰포트 문제 해결 */
+            height: 100%; /* 모든 브라우저에서 높이 채움 */
             background: url('https://i.postimg.cc/tg9WcjtM/background.png') no-repeat center center;
-            background-size: cover; /* 배경 이미지 반응형 크기 조정 */
+            background-size: cover;
         }
 
-        /* 컨테이너 스타일 */
+        /* 컨테이너 */
         .thumbnail {
             position: relative;
             width: 100%;
-            height: 100vh; /* 뷰포트 전체 높이 */
-            max-width: 600px; /* 최대 너비 제한 */
-        }
-
-        .thumbnail img {
-            display: block;
-            max-width: 100%;
-            height: auto;
-            margin: 0 auto;
+            height: 100%;
+            max-width: 600px; /* 최대 너비 */
         }
 
         /* 제목 이미지 */
         .thumbnail .title {
             position: absolute;
-            top: 5%; /* 화면 상단에서 5% */
+            top: 8%; /* 상단에서 8% 위치 */
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
-            width: 60%; /* 이미지 너비 비율 설정 */
+            width: calc(100% / 7); /* 화면 가로 길이의 1/7 크기 */
+            height: auto;
         }
 
         /* 메인 이미지 */
         .thumbnail .main-image {
             position: absolute;
-            top: 50%; /* 화면의 중앙 위치 */
+            top: 35%; /* 화면 상단에서 35% 위치 */
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translateX(-50%);
             z-index: 5;
-            width: 80%; /* 이미지 너비 비율 설정 */
+            width: 80%; /* 너비 비율 */
+            height: auto;
         }
 
         /* 버튼 이미지 */
         .thumbnail .button {
             position: absolute;
-            bottom: 5%; /* 화면 하단에서 5% */
+            bottom: 20%; /* 화면 하단에서 20% 위치 */
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
             width: 50%; /* 버튼 이미지 크기 */
+            height: auto;
         }
     </style>
 </head>
