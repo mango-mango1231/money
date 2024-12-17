@@ -49,17 +49,17 @@
         /* 제목 이미지 */
         .thumbnail .title {
             position: absolute;
-            top: 0; /* 화면 맨 위 */
+            top: 2%; /* 화면 상단 여백 */
             left: 50%;
             transform: translateX(-50%);
-            height: calc(100vh / 7); /* 화면 높이의 1/7 */
-            aspect-ratio: 5 / 1; /* 가로/세로 비율 설정 */
+            height: calc((100vh / 7) * 1.5); /* 기존보다 1.5배 크게 */
+            aspect-ratio: 5 / 1; /* 가로/세로 비율 유지 */
         }
 
         /* 메인 이미지 */
         .thumbnail .main-image {
             position: absolute;
-            top: calc(100vh / 7); /* 제목 아래 */
+            top: calc((100vh / 7) * 2.5); /* 제목 아래로 위치 */
             left: 50%;
             transform: translateX(-50%);
             height: calc((100vh / 7) * 4); /* 화면 높이의 4/7 */
@@ -69,11 +69,11 @@
         /* 버튼 이미지 */
         .thumbnail .button {
             position: absolute;
-            bottom: 0; /* 화면 맨 아래 */
+            bottom: 2%; /* 화면 하단 여백 */
             left: 50%;
             transform: translateX(-50%);
             height: calc(100vh / 7); /* 화면 높이의 1/7 */
-            aspect-ratio: 4 / 1; /* 가로/세로 비율 설정 */
+            aspect-ratio: 4 / 1; /* 가로/세로 비율 유지 */
         }
     </style>
 </head>
