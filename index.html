@@ -37,6 +37,16 @@
             max-width: 600px; /* 최대 너비 */
         }
 
+        /* 공통 이미지 스타일 */
+        .thumbnail img {
+            display: block;
+            max-width: 100%; /* 부모 요소의 최대 너비를 넘지 않음 */
+            max-height: 100%; /* 부모 요소의 최대 높이를 넘지 않음 */
+            width: auto; /* 비율 유지 */
+            height: auto; /* 비율 유지 */
+            object-fit: contain; /* 이미지 비율 유지 및 콘텐츠 안에 맞춤 */
+        }
+
         /* 제목 이미지 */
         .thumbnail .title {
             position: absolute;
@@ -44,8 +54,7 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
-            width: calc(100% / 7); /* 화면 가로 길이의 1/7 크기 */
-            height: auto;
+            width: 20%; /* 부모 컨테이너의 20% 너비 */
         }
 
         /* 메인 이미지 */
@@ -55,8 +64,7 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 5;
-            width: 80%; /* 너비 비율 */
-            height: auto;
+            width: 70%; /* 부모 컨테이너의 70% 너비 */
         }
 
         /* 버튼 이미지 */
@@ -66,8 +74,7 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
-            width: 50%; /* 버튼 이미지 크기 */
-            height: auto;
+            width: 30%; /* 부모 컨테이너의 30% 너비 */
         }
     </style>
 </head>
