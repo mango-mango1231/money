@@ -23,8 +23,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh; /* 사파리 뷰포트 문제 해결 */
-            height: 100%; /* 모든 브라우저에서 높이 채움 */
+            min-height: 100vh;
             background: url('https://i.postimg.cc/tg9WcjtM/background.png') no-repeat center center;
             background-size: cover;
         }
@@ -33,48 +32,44 @@
         .thumbnail {
             position: relative;
             width: 100%;
-            height: 100%;
-            max-width: 600px; /* 최대 너비 */
+            height: 100vh; /* 전체 화면 높이 */
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         /* 공통 이미지 스타일 */
         .thumbnail img {
             display: block;
-            max-width: 100%; /* 부모 요소의 최대 너비를 넘지 않음 */
-            max-height: 100%; /* 부모 요소의 최대 높이를 넘지 않음 */
-            width: auto; /* 비율 유지 */
-            height: auto; /* 비율 유지 */
-            object-fit: contain; /* 이미지 비율 유지 및 콘텐츠 안에 맞춤 */
+            margin: 0 auto;
+            width: auto;
+            object-fit: contain;
         }
 
         /* 제목 이미지 */
         .thumbnail .title {
             position: absolute;
-            top: 8%; /* 상단에서 8% 위치 */
+            top: 5%; /* 상단 여백 */
             left: 50%;
             transform: translateX(-50%);
-            z-index: 10;
-            width: 20%; /* 부모 컨테이너의 20% 너비 */
+            height: calc(100vh / 7); /* 화면 높이의 1/7 */
         }
 
         /* 메인 이미지 */
         .thumbnail .main-image {
             position: absolute;
-            top: 35%; /* 화면 상단에서 35% 위치 */
+            top: 20%; /* 제목 이미지와의 간격 */
             left: 50%;
             transform: translateX(-50%);
-            z-index: 5;
-            width: 70%; /* 부모 컨테이너의 70% 너비 */
+            height: calc((100vh / 7) * 4); /* 화면 높이의 4/7 */
         }
 
         /* 버튼 이미지 */
         .thumbnail .button {
             position: absolute;
-            bottom: 20%; /* 화면 하단에서 20% 위치 */
+            bottom: 10%; /* 하단 여백 */
             left: 50%;
             transform: translateX(-50%);
-            z-index: 10;
-            width: 30%; /* 부모 컨테이너의 30% 너비 */
+            height: calc(100vh / 7); /* 화면 높이의 1/7 */
         }
     </style>
 </head>
