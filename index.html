@@ -32,7 +32,7 @@
         .thumbnail {
             position: relative;
             width: 100%;
-            height: 100vh; /* 전체 화면 높이 */
+            height: 100vh;
             max-width: 600px;
             margin: 0 auto;
         }
@@ -42,7 +42,8 @@
             display: block;
             margin: 0 auto;
             width: auto;
-            object-fit: contain;
+            height: 100%; /* 부모 요소에 맞게 높이 설정 */
+            object-fit: contain; /* 비율 유지 */
         }
 
         /* 제목 이미지 */
@@ -52,15 +53,17 @@
             left: 50%;
             transform: translateX(-50%);
             height: calc(100vh / 7); /* 화면 높이의 1/7 */
+            aspect-ratio: 5 / 1; /* 가로/세로 비율 설정 */
         }
 
         /* 메인 이미지 */
         .thumbnail .main-image {
             position: absolute;
-            top: calc(100vh / 7); /* 제목 아래로 배치 */
+            top: calc(100vh / 7); /* 제목 아래 */
             left: 50%;
             transform: translateX(-50%);
             height: calc((100vh / 7) * 4); /* 화면 높이의 4/7 */
+            aspect-ratio: 3 / 4; /* 가로/세로 비율 설정 */
         }
 
         /* 버튼 이미지 */
@@ -70,6 +73,7 @@
             left: 50%;
             transform: translateX(-50%);
             height: calc(100vh / 7); /* 화면 높이의 1/7 */
+            aspect-ratio: 4 / 1; /* 가로/세로 비율 설정 */
         }
     </style>
 </head>
