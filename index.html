@@ -13,8 +13,10 @@
         }
 
         html, body {
-            overflow: hidden;
+            overflow: hidden; /* 스크롤 제거 */
             height: 100%;
+            margin: 0;
+            padding: 0;
         }
 
         body {
@@ -34,18 +36,10 @@
             margin: 0 auto;
         }
 
-        .thumbnail img {
-            display: block;
-            margin: 0 auto;
-            width: auto;
-            height: 100%;
-            object-fit: contain;
-        }
-
         /* 제목 이미지 */
         .thumbnail .title {
             position: absolute;
-            top: 2%;
+            top: 2%; /* 화면 상단 여백 */
             left: 50%;
             transform: translateX(-50%);
             height: calc((100vh / 7) * 1.5);
@@ -55,7 +49,7 @@
         /* 메인 이미지 */
         .thumbnail .main-image {
             position: absolute;
-            top: calc((100vh / 7) * 2.5);
+            top: calc((100vh / 7) * 2); /* 제목과의 간격 줄임 */
             left: 50%;
             transform: translateX(-50%);
             height: calc((100vh / 7) * 4);
@@ -65,12 +59,21 @@
         /* 버튼 이미지 */
         .thumbnail .button {
             position: absolute;
-            bottom: 2%; /* 하단 여백 확보 */
+            bottom: 2%; /* 화면 하단 여백 */
             left: 50%;
             transform: translateX(-50%);
-            height: calc(100vh / 7); /* 세로 높이 비율 유지 */
-            width: auto; /* 가로는 비율에 맞게 자동 조정 */
-            max-width: 90%; /* 화면 가로의 최대 90%로 제한 */
+            height: calc(100vh / 7); /* 세로 높이 유지 */
+            width: auto; /* 비율 유지 */
+            max-width: 90%; /* 가로는 화면의 90%를 넘지 않음 */
+            padding: 0 5%; /* 버튼이 너무 작아지지 않도록 좌우 여백 */
+        }
+
+        .thumbnail img {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
         }
     </style>
 </head>
