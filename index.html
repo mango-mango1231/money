@@ -48,7 +48,7 @@
         /* 제목 이미지 */
         .thumbnail .title {
             position: absolute;
-            top: 5%; /* 상단 여백 */
+            top: 0; /* 화면 맨 위 */
             left: 50%;
             transform: translateX(-50%);
             height: calc(100vh / 7); /* 화면 높이의 1/7 */
@@ -57,7 +57,7 @@
         /* 메인 이미지 */
         .thumbnail .main-image {
             position: absolute;
-            top: 20%; /* 제목 이미지와의 간격 */
+            top: calc(100vh / 7); /* 제목 아래로 배치 */
             left: 50%;
             transform: translateX(-50%);
             height: calc((100vh / 7) * 4); /* 화면 높이의 4/7 */
@@ -66,7 +66,7 @@
         /* 버튼 이미지 */
         .thumbnail .button {
             position: absolute;
-            bottom: 10%; /* 하단 여백 */
+            bottom: 0; /* 화면 맨 아래 */
             left: 50%;
             transform: translateX(-50%);
             height: calc(100vh / 7); /* 화면 높이의 1/7 */
