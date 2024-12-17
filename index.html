@@ -13,10 +13,8 @@
         }
 
         html, body {
-            overflow: hidden; /* 스크롤 제거 */
+            overflow: hidden;
             height: 100%;
-            margin: 0;
-            padding: 0;
         }
 
         body {
@@ -28,7 +26,6 @@
             background-size: cover;
         }
 
-        /* 컨테이너 */
         .thumbnail {
             position: relative;
             width: 100%;
@@ -37,44 +34,43 @@
             margin: 0 auto;
         }
 
-        /* 공통 이미지 스타일 */
         .thumbnail img {
             display: block;
             margin: 0 auto;
             width: auto;
-            height: 100%; /* 부모 요소에 맞게 높이 설정 */
-            object-fit: contain; /* 비율 유지 */
+            height: 100%;
+            object-fit: contain;
         }
 
         /* 제목 이미지 */
         .thumbnail .title {
             position: absolute;
-            top: 2%; /* 화면 상단 여백 */
+            top: 2%;
             left: 50%;
             transform: translateX(-50%);
-            height: calc((100vh / 7) * 1.5); /* 제목 이미지 크기 증가 */
+            height: calc((100vh / 7) * 1.5);
             aspect-ratio: 5 / 1;
         }
 
         /* 메인 이미지 */
         .thumbnail .main-image {
             position: absolute;
-            top: calc((100vh / 7) * 2.5); /* 제목 아래 위치 */
+            top: calc((100vh / 7) * 2.5);
             left: 50%;
             transform: translateX(-50%);
-            height: calc((100vh / 7) * 4); /* 화면 높이의 4/7 */
+            height: calc((100vh / 7) * 4);
             aspect-ratio: 3 / 4;
         }
 
         /* 버튼 이미지 */
         .thumbnail .button {
             position: absolute;
-            bottom: 2%; /* 화면 하단 여백 */
+            bottom: 2%; /* 하단 여백 확보 */
             left: 50%;
             transform: translateX(-50%);
-            height: calc(100vh / 7); /* 화면 높이의 1/7 */
-            width: auto; /* 가로 비율 유지 */
-            max-width: 90%; /* 최대 가로 길이 제한 */
+            height: calc(100vh / 7); /* 세로 높이 비율 유지 */
+            width: auto; /* 가로는 비율에 맞게 자동 조정 */
+            max-width: 90%; /* 화면 가로의 최대 90%로 제한 */
         }
     </style>
 </head>
