@@ -41,9 +41,9 @@
         .thumbnail img {
             display: block;
             margin: 0 auto;
-            width: auto;
-            height: 100%; /* 부모 요소에 맞게 높이 설정 */
-            object-fit: contain; /* 비율 유지 */
+            width: 100%; /* 부모 요소에 맞춤 */
+            height: auto; /* 비율 유지 */
+            object-fit: contain;
         }
 
         /* 제목 이미지 */
@@ -52,18 +52,18 @@
             top: 2%; /* 화면 상단 여백 */
             left: 50%;
             transform: translateX(-50%);
-            height: calc((100vh / 7) * 1.5); /* 기존보다 1.5배 크게 */
-            aspect-ratio: 5 / 1; /* 가로/세로 비율 유지 */
+            height: calc(100vh / 8); /* 화면 높이의 약 1/8 */
+            max-width: 80%; /* 가로 길이 제한 */
         }
 
         /* 메인 이미지 */
         .thumbnail .main-image {
             position: absolute;
-            top: calc((100vh / 7) * 2.5); /* 제목 아래로 위치 */
+            top: calc((100vh / 8) + 2%); /* 제목 바로 아래 배치 (간격 최소화) */
             left: 50%;
             transform: translateX(-50%);
-            height: calc((100vh / 7) * 4); /* 화면 높이의 4/7 */
-            aspect-ratio: 3 / 4; /* 가로/세로 비율 설정 */
+            height: calc((100vh / 8) * 4.5); /* 화면 높이의 약 4.5/8 */
+            max-width: 90%; /* 가로 길이 제한 */
         }
 
         /* 버튼 이미지 */
@@ -72,8 +72,8 @@
             bottom: 2%; /* 화면 하단 여백 */
             left: 50%;
             transform: translateX(-50%);
-            height: calc(100vh / 7); /* 화면 높이의 1/7 */
-            aspect-ratio: 4 / 1; /* 가로/세로 비율 유지 */
+            height: calc(100vh / 8); /* 화면 높이의 약 1/8 */
+            max-width: 80%; /* 가로 길이 제한 */
         }
     </style>
 </head>
