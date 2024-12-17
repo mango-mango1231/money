@@ -15,8 +15,6 @@
         html, body {
             overflow: hidden; /* 스크롤 제거 */
             height: 100%;
-            margin: 0;
-            padding: 0;
         }
 
         body {
@@ -32,7 +30,7 @@
             position: relative;
             width: 100%;
             height: 100vh;
-            max-width: 600px;
+            max-width: 600px; /* 최대 너비 */
             margin: 0 auto;
         }
 
@@ -42,35 +40,34 @@
             top: 2%; /* 화면 상단 여백 */
             left: 50%;
             transform: translateX(-50%);
-            height: calc((100vh / 7) * 1.5);
-            aspect-ratio: 5 / 1;
+            height: calc((100vh / 7) * 1.5); /* 세로 크기 설정 */
+            aspect-ratio: 5 / 1; /* 가로 세로 비율 유지 */
         }
 
         /* 메인 이미지 */
         .thumbnail .main-image {
             position: absolute;
-            top: calc((100vh / 7) * 2.1); /* 제목과의 공백 최소화 */
+            top: calc((100vh / 7) * 1.7); /* 제목과의 간격 최소화 */
             left: 50%;
             transform: translateX(-50%);
-            height: calc((100vh / 7) * 4);
-            aspect-ratio: 3 / 4;
+            height: calc((100vh / 7) * 4); /* 세로 크기 설정 */
+            aspect-ratio: 3 / 4; /* 가로 세로 비율 유지 */
         }
 
         /* 버튼 이미지 */
         .thumbnail .button {
             position: absolute;
-            bottom: calc(4% + env(safe-area-inset-bottom)); /* 하단 여백 및 안전 영역 고려 */
+            bottom: calc(4% + env(safe-area-inset-bottom)); /* 하단 여백 및 iOS 안전 영역 고려 */
             left: 50%;
             transform: translateX(-50%);
-            height: calc((100vh / 7) * 1.4); /* 버튼 크기 40% 확대 */
+            height: calc((100vh / 7) * 1.4); /* 버튼 크기 확대 */
             width: auto;
-            max-width: 90%; /* 화면 가로폭을 넘지 않게 설정 */
+            max-width: 90%; /* 가로 길이가 화면을 넘지 않도록 제한 */
         }
 
         /* 이미지 비율 유지 */
         .thumbnail img {
             display: block;
-            margin: 0 auto;
             width: 100%;
             height: auto;
             object-fit: contain;
