@@ -39,17 +39,17 @@
         /* 제목 이미지 */
         .thumbnail .title {
             position: absolute;
-            top: 2%; /* 화면 상단 여백 */
+            top: 2%;
             left: 50%;
             transform: translateX(-50%);
-            height: calc((100vh / 7) * 1.5);
+            height: calc((100vh / 7) * 1.5); /* 세로 비율 유지 */
             aspect-ratio: 5 / 1;
         }
 
         /* 메인 이미지 */
         .thumbnail .main-image {
             position: absolute;
-            top: calc((100vh / 7) * 2); /* 제목과의 간격 줄임 */
+            top: calc((100vh / 7) * 2.2); /* 제목과의 간격 최소화 */
             left: 50%;
             transform: translateX(-50%);
             height: calc((100vh / 7) * 4);
@@ -59,13 +59,12 @@
         /* 버튼 이미지 */
         .thumbnail .button {
             position: absolute;
-            bottom: 2%; /* 화면 하단 여백 */
+            bottom: calc(2% + env(safe-area-inset-bottom)); /* 안전 영역 고려 */
             left: 50%;
             transform: translateX(-50%);
-            height: calc(100vh / 7); /* 세로 높이 유지 */
-            width: auto; /* 비율 유지 */
-            max-width: 90%; /* 가로는 화면의 90%를 넘지 않음 */
-            padding: 0 5%; /* 버튼이 너무 작아지지 않도록 좌우 여백 */
+            height: calc(100vh / 7); /* 세로 높이 비율 유지 */
+            width: auto;
+            max-width: 90%; /* 가로 길이를 화면의 90% 이하로 제한 */
         }
 
         .thumbnail img {
@@ -73,7 +72,7 @@
             margin: 0 auto;
             width: 100%;
             height: auto;
-            object-fit: contain;
+            object-fit: contain; /* 비율 유지 */
         }
     </style>
 </head>
