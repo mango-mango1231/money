@@ -31,43 +31,42 @@
         .thumbnail {
             position: relative;
             width: 100%;
-            height: 100vh; /* 전체 높이 */
+            height: 100vh; /* 전체 화면 높이 */
             max-width: 600px;
             margin: 0 auto;
         }
 
-        /* 제목 이미지 (변경 없음) */
+        /* 제목 이미지 */
         .thumbnail .title {
             position: absolute;
-            top: 2%;
+            top: 2%; /* 화면 상단 여백 */
             left: 50%;
             transform: translateX(-50%);
-            height: calc((100vh / 7) * 1.5);
+            height: calc((100vh / 7) * 1.5); /* 원본 크기 */
             aspect-ratio: 5 / 1;
         }
 
-        /* 메인 이미지 (변경 없음) */
+        /* 메인 이미지 */
         .thumbnail .main-image {
             position: absolute;
             top: calc((100vh / 7) * 2.5); /* 제목 바로 아래 */
             left: 50%;
             transform: translateX(-50%);
-            height: calc((100vh / 7) * 4);
+            height: calc((100vh / 7) * 4); /* 원본 크기 */
             aspect-ratio: 3 / 4;
         }
 
         /* 버튼 이미지 */
         .thumbnail .button {
             position: absolute;
-            bottom: calc(2% + env(safe-area-inset-bottom)); /* iOS 안전 영역 고려 */
+            bottom: calc(4% + env(safe-area-inset-bottom)); /* 하단 여백 추가 및 안전 영역 고려 */
             left: 50%;
             transform: translateX(-50%);
-            height: calc(100vh / 7); /* 세로 높이는 화면 높이의 1/7 */
-            width: auto; /* 가로 비율 유지 */
+            height: calc((100vh / 7) * 1.4); /* 버튼 크기 40% 확대 */
+            width: auto; /* 가로는 비율 유지 */
             max-width: 90%; /* 화면 가로폭을 넘지 않도록 제한 */
         }
 
-        /* 이미지 비율 유지 */
         .thumbnail img {
             display: block;
             margin: 0 auto;
