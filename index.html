@@ -28,12 +28,22 @@
             background-size: cover;
         }
 
+        /* 컨테이너 */
         .thumbnail {
             position: relative;
             width: 100%;
-            height: 100vh; /* 전체 화면 높이 */
+            height: 100vh;
             max-width: 600px;
             margin: 0 auto;
+        }
+
+        /* 공통 이미지 스타일 */
+        .thumbnail img {
+            display: block;
+            margin: 0 auto;
+            width: auto;
+            height: 100%; /* 부모 요소에 맞게 높이 설정 */
+            object-fit: contain; /* 비율 유지 */
         }
 
         /* 제목 이미지 */
@@ -42,37 +52,28 @@
             top: 2%; /* 화면 상단 여백 */
             left: 50%;
             transform: translateX(-50%);
-            height: calc((100vh / 7) * 1.5); /* 원본 크기 */
-            aspect-ratio: 5 / 1;
+            height: calc((100vh / 7) * 1.5); /* 기존보다 1.5배 크게 */
+            aspect-ratio: 5 / 1; /* 가로/세로 비율 유지 */
         }
 
         /* 메인 이미지 */
         .thumbnail .main-image {
             position: absolute;
-            top: calc((100vh / 7) * 2.5); /* 제목 바로 아래 */
+            top: calc((100vh / 7) * 2.5); /* 제목 아래로 위치 */
             left: 50%;
             transform: translateX(-50%);
-            height: calc((100vh / 7) * 4); /* 원본 크기 */
-            aspect-ratio: 3 / 4;
+            height: calc((100vh / 7) * 4); /* 화면 높이의 4/7 */
+            aspect-ratio: 3 / 4; /* 가로/세로 비율 설정 */
         }
 
         /* 버튼 이미지 */
         .thumbnail .button {
             position: absolute;
-            bottom: calc(4% + env(safe-area-inset-bottom)); /* 하단 여백 추가 및 안전 영역 고려 */
+            bottom: 2%; /* 화면 하단 여백 */
             left: 50%;
             transform: translateX(-50%);
-            height: calc((100vh / 7) * 1.4); /* 버튼 크기 40% 확대 */
-            width: auto; /* 가로는 비율 유지 */
-            max-width: 90%; /* 화면 가로폭을 넘지 않도록 제한 */
-        }
-
-        .thumbnail img {
-            display: block;
-            margin: 0 auto;
-            width: 100%;
-            height: auto;
-            object-fit: contain; /* 비율 유지 */
+            height: calc(100vh / 7); /* 화면 높이의 1/7 */
+            aspect-ratio: 4 / 1; /* 가로/세로 비율 유지 */
         }
     </style>
 </head>
