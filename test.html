@@ -6,23 +6,22 @@
     <title>돈미새 테스트</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Nanum+Myeongjo&family=Nanum+Gothic&display=swap');
-        body { 
-            font-family: 'Noto Sans KR', sans-serif; 
-            text-align: center;
-        }
-        html, body {
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    text-align: center;
     margin: 0;
     padding: 0;
     overflow-x: hidden; /* Prevents horizontal scroll */
 }
 
-.title {
-    margin: 0; /* Removes margin around the h1 */
-    padding: 0; /* Removes padding around the h1 */
+.title, .step-indicator {
+    display: flex; /* Applies flexbox layout */
+    justify-content: center; /* Centers content horizontally in the flex container */
+    align-items: center; /* Centers content vertically in the flex container */
+    width: 100%; /* Ensures the flex container takes full width */
 }
 
 .title-image {
-    height: auto; /* Adjusts height automatically to maintain aspect ratio */
     max-height: 72px; /* Adjusted for visibility */
     width: auto; /* Width is automatically adjusted */
     max-width: 100%; /* Ensures image does not exceed screen width */
