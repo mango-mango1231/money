@@ -308,6 +308,14 @@ function toggleSelection(element, question, score) {
     selectOption(question, score);
 }
     </script>
+
+    <style>
+    .result-image {
+        width: 100%; /* 이미지의 너비를 화면 너비에 맞춤 */
+        height: auto; /* 이미지의 높이를 자동으로 조절하여 비율을 유지 */
+    }
+</style>
+    
    <script>
         let currentQuestion = 1;
         const scores = []; // 사용자 선택 점수 저장
