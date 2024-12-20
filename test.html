@@ -1,72 +1,113 @@
-
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>돈미새 테스트</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Nanum+Myeongjo&family=Nanum+Gothic&display=swap');
         html, body {
+            overflow: hidden; /* 스크롤 제거 */
+            height: 100%;
             margin: 0;
             padding: 0;
-            overflow-x: hidden; /* Prevent horizontal scroll */
         }
+        
         body { 
-            font-family: 'Noto Sans KR', sans-serif;
+            font-family: 'Noto Sans KR', sans-serif; 
             text-align: center;
-            background-color: #000; /* Default background for the whole page */
         }
         .title-image {
-            height: auto; 
-            max-height: 75px; 
-            width: auto;
-            max-width: 100%; 
+            height: auto; /* Adjusts height automatically to maintain aspect ratio */
+            max-height: 75px; /* Further increased height for better visibility */
+            width: auto; /* Width is automatically adjusted */
+            max-width: 100%; /* Ensures image does not exceed screen width */
         }
         .step-indicator {
-            margin: 10px auto 0; /* Reduced top margin */
+            margin: 30px auto;
             font-size: 12px;
             display: flex;
             justify-content: space-between;
             max-width: 300px;
-            background-color: #fff; /* White background for the top part */
-            padding: 10px 0; /* Padding to space out elements */
+        }
+        .step-indicator span {
+            font-weight: normal;
         }
         .question-container { 
             display: none; 
-            margin: 0; /* No vertical margin */
-            background-color: #000; /* Black background for questions */
-            color: #fff; /* White text for readability */
+            margin: 40px;
         }
         .question-container.active { 
             display: block; 
         }
+        .question-text { 
+            font-size: 32px; /* 크기 확실히 키움 */
+            font-weight: bold; /* 굵게 표시 */
+            text-align: left; /* 왼쪽 정렬 */
+            margin-bottom: 30px;
+            padding-left: 20px; /* 왼쪽 여백 추가 */
+        }
+        .button {
+            margin-top: 20px; 
+            padding: 15px 30px; 
+            color: white; 
+            border: none; 
+            border-radius: 20px;
+            cursor: pointer; 
+            font-size: 18px;
+            display: inline-block;
+            text-align: center;
+        }
+        .next-button {
+            background-color: #4CAF50;
+        }
+        .prev-button {
+            background-color: #FFA07A; 
+            margin-right: 10px;
+        }
         .image-grid {
             display: flex;
             overflow-x: auto;
-            gap: 10px;
-            margin: 0 20px; /* Use space at the sides */
+            gap: 30px;
+            padding: 10px;
+            scroll-behavior: smooth;
         }
         .image-option { 
             flex: 0 0 auto;
             cursor: pointer;
             border-radius: 15px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s ease;
+            text-align: center;
         }
         .image-option img {
             width: 100%;
             height: auto;
-            max-width: 100%;
+            max-width: 200px;
+            aspect-ratio: 1;
             border-radius: 15px;
+            border: 2px solid #ccc;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s, border-color 0.3s;
         }
+        .image-option .level-text {
+            margin-top: 10px;
+        }
+        .image-option .image-caption {
+            margin-top: 10px;
+        }
         .image-option.selected img {
-            border-color: red; /* Highlight selected option */
+            background-color: #e0e0e0;
+            border-color: red;
         }
         .image-option:hover img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
-        .result-container {
+        .result-image {
+            width: 100%; /* Ensure image does not exceed the width of the screen */
+            height: auto; /* Maintain aspect ratio */
+            max-width: 100%; /* Prevents the image from exceeding the viewport width */
+        }
+                .result-container {
             padding: 20px;
             background-color: #000; /* Black background for results */
             color: #fff; /* Text color for readability */
@@ -74,9 +115,12 @@
     </style>
 </head>
 <body>
-    <h1>
+
+    <h1 class="title">
         <img src="https://i.postimg.cc/pr6fsWBb/newtitle.png" alt="돈미새 테스트" class="title-image">
     </h1>
+
+    <!-- 단계 표시 -->
     <div class="step-indicator">
         <span id="step1">1단계</span>
         <span id="step2">2단계</span>
@@ -276,7 +320,7 @@ function toggleSelection(element, question, score) {
     element.classList.add('selected');
 
     // 선택한 옵션의 점수 저장
-    console.log(`Question: ${question}, Score: ${score}`); // 디버그 로그
+    console.log(Question: ${question}, Score: ${score}); // 디버그 로그
     selectOption(question, score);
 }
     </script>
@@ -295,49 +339,49 @@ function toggleSelection(element, question, score) {
         const steps = ["step1", "step2", "step3", "step4", "step5", "step6"]; // 단계 ID
 const results = [
     {
-        text: `LEVEL 1 자존심이 최고인 사람 자존심 빼면 시체형
+        text: LEVEL 1 자존심이 최고인 사람 자존심 빼면 시체형
         자존심이 곧 인생의 전부. 남들 말로 "자존심 하나로 국보급".
         기회가 와도 자존심 때문에 놓친 적 많음. 그래도 후회는 없다! 태도.
         잔고는 텅텅, 마음은 꽉 찬 상태. "돈보다 중요한 게 얼마나 많은데!"
-        주변 사람들은 "쓸데없는 고생 좀 그만해!" 하지만 본인은 만족 중.`,
+        주변 사람들은 "쓸데없는 고생 좀 그만해!" 하지만 본인은 만족 중.,
         image: "https://i.postimg.cc/tRmTwHsk/111.png"
     },
     {
-        text: `LEVEL 2 자존심과 돈 사이 갈등형 상황 따라 다름
+        text: LEVEL 2 자존심과 돈 사이 갈등형 상황 따라 다름
         상황에 따라 달라지는 자존심 온도 조절 장치 탑재.
         큰돈 앞에선 자존심도 잠시 내려놓는 융통성 전문가.
         "돈이냐 자존심이냐?"라는 질문에 "둘 다 적당히!"라고 외침.
-        친구들 사이에서 "쟤 은근 현명한데, 때론 웃기다" 평가받음.`,
+        친구들 사이에서 "쟤 은근 현명한데, 때론 웃기다" 평가받음.,
         image: "https://i.postimg.cc/pXwdVYYn/222.png"
     },
     {
-        text: `LEVEL 3 자존심과 돈이 반반인 사람 중립형
+        text: LEVEL 3 자존심과 돈이 반반인 사람 중립형
         자존심과 돈 사이의 황금 밸런스 유지.
         상황에 따라 자존심도, 돈도 적당히 챙기는 능력자.
         "평화로운 삶이 최고!"라는 신념으로 갈등 없이 살아감.
-        주변 사람들에게 "안정적이고 믿음직하다"는 평가를 자주 받음.`,
+        주변 사람들에게 "안정적이고 믿음직하다"는 평가를 자주 받음.,
         image: "https://i.postimg.cc/j5Sx38KB/333.png"
     },
     {
-        text: `LEVEL 4 돈이 더 중요한 사람 특정 영역만 자존심 유지형
+        text: LEVEL 4 돈이 더 중요한 사람 특정 영역만 자존심 유지형
         자존심? 필요할 땐 세우고, 안 중요한 곳에선 과감히 버림.
         돈 앞에선 계산 빠른 실속형, 그러나 중요한 건 끝까지 지킴.
         "현실적으로 살아야지!"라는 태도로 모든 걸 합리화.
-        주변에선 "쟤 진짜 똑똑하다. 근데 가끔 정이 없을 때도?"`,
+        주변에선 "쟤 진짜 똑똑하다. 근데 가끔 정이 없을 때도?",
         image: "https://i.postimg.cc/qq9pR4nd/444.png"
     },
     {
-        text: `LEVEL 5 자존심보다 돈이 최고인 사람 현실주의 끝판왕형
+        text: LEVEL 5 자존심보다 돈이 최고인 사람 현실주의 끝판왕형
         "자존심은 통장에 없으면 무슨 소용?" 철저한 현실주의자.
         모든 행동의 기준은 오직 하나: "이게 돈이 되는가?"
         "돈이 곧 자존심이다!" 철학을 몸소 실천 중.
-        주변 사람들은 "어쨌든 잘 먹고 잘 사니 뭐라 할 수 없다" 반응.`,
+        주변 사람들은 "어쨌든 잘 먹고 잘 사니 뭐라 할 수 없다" 반응.,
         image: "https://i.postimg.cc/kXbnHR3M/555.png"
     }
 ];
         function selectOption(question, score) {
     scores[question - 1] = score; // 선택한 점수 저장
-    console.log(`Scores array updated: ${scores}`); // 디버그 로그
+    console.log(Scores array updated: ${scores}); // 디버그 로그
 }
         function toggleSelection(element, question, score) {
             // 같은 문항의 다른 옵션은 선택 해제
@@ -352,11 +396,11 @@ const results = [
         }
 
         function nextQuestion(questionNumber) {
-            document.getElementById(`question${questionNumber}`).classList.remove("active");
+            document.getElementById(question${questionNumber}).classList.remove("active");
             const nextQuestionId = questionNumber + 1;
 
             if (nextQuestionId <= 6) {
-                document.getElementById(`question${nextQuestionId}`).classList.add("active");
+                document.getElementById(question${nextQuestionId}).classList.add("active");
                 currentQuestion = nextQuestionId;
                 updateStepIndicator(); // 단계 업데이트
             } else {
@@ -365,9 +409,9 @@ const results = [
         }
 
         function prevQuestion(questionNumber) {
-            document.getElementById(`question${questionNumber}`).classList.remove("active");
+            document.getElementById(question${questionNumber}).classList.remove("active");
             const prevQuestionId = questionNumber - 1;
-            document.getElementById(`question${prevQuestionId}`).classList.add("active");
+            document.getElementById(question${prevQuestionId}).classList.add("active");
             currentQuestion = prevQuestionId;
             updateStepIndicator(); // 단계 업데이트
         }
@@ -388,7 +432,7 @@ function showResult() {
     document.querySelector(".step-indicator").style.display = "none";
 
     const totalScore = scores.reduce((a, b) => a + b, 0);
-    console.log(`Total score calculated: ${totalScore}`); // 디버그 로그
+    console.log(Total score calculated: ${totalScore}); // 디버그 로그
 
     let resultIndex;
     if (totalScore <= thresholds[0]) {
@@ -404,7 +448,7 @@ function showResult() {
     }
 
     const result = results[resultIndex];
-    console.log(`Result selected: ${result.text}`); // 디버그 로그
+    console.log(Result selected: ${result.text}); // 디버그 로그
     document.getElementById("resultImage").src = result.image;
     document.getElementById("resultText").textContent = result.text;
 
