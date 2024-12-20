@@ -10,22 +10,28 @@
             font-family: 'Noto Sans KR', sans-serif; 
             text-align: center;
         }
-.title-image {
-    height: auto; /* Adjusts height automatically to maintain aspect ratio */
-    max-height: 72px; /* Increased to 1.5 times the previous size for better visibility */
-    width: auto; /* Width is automatically adjusted */
-    max-width: 100%; /* Ensures image does not exceed screen width */
+        html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevents horizontal scroll */
 }
 
 .title {
-    margin-top: 0; /* Removes space above the title image */
-    margin-bottom: 0; /* Removes space below the title image */
-    padding: 0; /* Ensures no padding is adding extra space */
+    margin: 0; /* Removes margin around the h1 */
+    padding: 0; /* Removes padding around the h1 */
+}
+
+.title-image {
+    height: auto; /* Adjusts height automatically to maintain aspect ratio */
+    max-height: 72px; /* Adjusted for visibility */
+    width: auto; /* Width is automatically adjusted */
+    max-width: 100%; /* Ensures image does not exceed screen width */
+    display: block; /* Ensures the image does not have extra space below it */
 }
 
 .step-indicator {
-    margin-top: 10px; /* Reduce space above the step indicator */
-    margin-bottom: 30px; /* Maintains the existing bottom margin */
+    margin-top: 5px; /* Reduced top margin */
+    margin-bottom: 20px; /* Reduced bottom margin for closer step indicators */
     font-size: 12px;
     display: flex;
     justify-content: space-between;
