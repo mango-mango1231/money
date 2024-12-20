@@ -1,3 +1,4 @@
+
 <!DOCTYPE html> 
 <html lang="ko">
 <head>
@@ -10,13 +11,12 @@
             font-family: 'Noto Sans KR', sans-serif; 
             text-align: center;
         }
-        .title {
-            font-size: 28px;
-            margin-bottom: 5px;
+        .title-image {
+            height: auto; /* Adjusts height automatically to maintain aspect ratio */
+            max-height: 28px; /* Original title font size, maintaining the height */
+            width: auto; /* Width is automatically adjusted */
+            max-width: 100%; /* Ensures image does not exceed screen width */
         }
-        .title .text-red { color: red; }
-        .title .text-yellow { color: #FFA500; }
-        .title .text-green { color: green; }
         .step-indicator {
             margin: 30px auto;
             font-size: 12px;
@@ -96,7 +96,6 @@
         .image-option:hover img {
             transform: scale(1.05);
         }
-        /* Add responsive styling for images on result page */
         .result-image {
             width: 100%; /* Ensure image does not exceed the width of the screen */
             height: auto; /* Maintain aspect ratio */
@@ -107,10 +106,10 @@
 <body>
 
     <h1 class="title">
-        <span class="text-red">돈</span><span class="text-yellow">미</span><span class="text-green">새</span> 테스트
+        <img src="https://i.postimg.cc/pr6fsWBb/newtitle.png" alt="돈미새 테스트" class="title-image">
     </h1>
 
-        <!-- 단계 표시 -->
+    <!-- 단계 표시 -->
     <div class="step-indicator">
         <span id="step1">1단계</span>
         <span id="step2">2단계</span>
@@ -310,10 +309,18 @@ function toggleSelection(element, question, score) {
     element.classList.add('selected');
 
     // 선택한 옵션의 점수 저장
-    console.log(Question: ${question}, Score: ${score}); // 디버그 로그
+    console.log(`Question: ${question}, Score: ${score}`); // 디버그 로그
     selectOption(question, score);
 }
     </script>
+
+    <style>
+    .result-image {
+        width: 100%; /* 이미지의 너비를 화면 너비에 맞춤 */
+        height: auto; /* 이미지의 높이를 자동으로 조절하여 비율을 유지 */
+    }
+</style>
+    
    <script>
         let currentQuestion = 1;
         const scores = []; // 사용자 선택 점수 저장
@@ -321,49 +328,49 @@ function toggleSelection(element, question, score) {
         const steps = ["step1", "step2", "step3", "step4", "step5", "step6"]; // 단계 ID
 const results = [
     {
-        text: LEVEL 1 자존심이 최고인 사람 자존심 빼면 시체형
+        text: `LEVEL 1 자존심이 최고인 사람 자존심 빼면 시체형
         자존심이 곧 인생의 전부. 남들 말로 "자존심 하나로 국보급".
         기회가 와도 자존심 때문에 놓친 적 많음. 그래도 후회는 없다! 태도.
         잔고는 텅텅, 마음은 꽉 찬 상태. "돈보다 중요한 게 얼마나 많은데!"
-        주변 사람들은 "쓸데없는 고생 좀 그만해!" 하지만 본인은 만족 중.,
+        주변 사람들은 "쓸데없는 고생 좀 그만해!" 하지만 본인은 만족 중.`,
         image: "https://i.postimg.cc/tRmTwHsk/111.png"
     },
     {
-        text: LEVEL 2 자존심과 돈 사이 갈등형 상황 따라 다름
+        text: `LEVEL 2 자존심과 돈 사이 갈등형 상황 따라 다름
         상황에 따라 달라지는 자존심 온도 조절 장치 탑재.
         큰돈 앞에선 자존심도 잠시 내려놓는 융통성 전문가.
         "돈이냐 자존심이냐?"라는 질문에 "둘 다 적당히!"라고 외침.
-        친구들 사이에서 "쟤 은근 현명한데, 때론 웃기다" 평가받음.,
+        친구들 사이에서 "쟤 은근 현명한데, 때론 웃기다" 평가받음.`,
         image: "https://i.postimg.cc/pXwdVYYn/222.png"
     },
     {
-        text: LEVEL 3 자존심과 돈이 반반인 사람 중립형
+        text: `LEVEL 3 자존심과 돈이 반반인 사람 중립형
         자존심과 돈 사이의 황금 밸런스 유지.
         상황에 따라 자존심도, 돈도 적당히 챙기는 능력자.
         "평화로운 삶이 최고!"라는 신념으로 갈등 없이 살아감.
-        주변 사람들에게 "안정적이고 믿음직하다"는 평가를 자주 받음.,
+        주변 사람들에게 "안정적이고 믿음직하다"는 평가를 자주 받음.`,
         image: "https://i.postimg.cc/j5Sx38KB/333.png"
     },
     {
-        text: LEVEL 4 돈이 더 중요한 사람 특정 영역만 자존심 유지형
+        text: `LEVEL 4 돈이 더 중요한 사람 특정 영역만 자존심 유지형
         자존심? 필요할 땐 세우고, 안 중요한 곳에선 과감히 버림.
         돈 앞에선 계산 빠른 실속형, 그러나 중요한 건 끝까지 지킴.
         "현실적으로 살아야지!"라는 태도로 모든 걸 합리화.
-        주변에선 "쟤 진짜 똑똑하다. 근데 가끔 정이 없을 때도?",
+        주변에선 "쟤 진짜 똑똑하다. 근데 가끔 정이 없을 때도?"`,
         image: "https://i.postimg.cc/qq9pR4nd/444.png"
     },
     {
-        text: LEVEL 5 자존심보다 돈이 최고인 사람 현실주의 끝판왕형
+        text: `LEVEL 5 자존심보다 돈이 최고인 사람 현실주의 끝판왕형
         "자존심은 통장에 없으면 무슨 소용?" 철저한 현실주의자.
         모든 행동의 기준은 오직 하나: "이게 돈이 되는가?"
         "돈이 곧 자존심이다!" 철학을 몸소 실천 중.
-        주변 사람들은 "어쨌든 잘 먹고 잘 사니 뭐라 할 수 없다" 반응.,
+        주변 사람들은 "어쨌든 잘 먹고 잘 사니 뭐라 할 수 없다" 반응.`,
         image: "https://i.postimg.cc/kXbnHR3M/555.png"
     }
 ];
         function selectOption(question, score) {
     scores[question - 1] = score; // 선택한 점수 저장
-    console.log(Scores array updated: ${scores}); // 디버그 로그
+    console.log(`Scores array updated: ${scores}`); // 디버그 로그
 }
         function toggleSelection(element, question, score) {
             // 같은 문항의 다른 옵션은 선택 해제
@@ -378,11 +385,11 @@ const results = [
         }
 
         function nextQuestion(questionNumber) {
-            document.getElementById(question${questionNumber}).classList.remove("active");
+            document.getElementById(`question${questionNumber}`).classList.remove("active");
             const nextQuestionId = questionNumber + 1;
 
             if (nextQuestionId <= 6) {
-                document.getElementById(question${nextQuestionId}).classList.add("active");
+                document.getElementById(`question${nextQuestionId}`).classList.add("active");
                 currentQuestion = nextQuestionId;
                 updateStepIndicator(); // 단계 업데이트
             } else {
@@ -391,9 +398,9 @@ const results = [
         }
 
         function prevQuestion(questionNumber) {
-            document.getElementById(question${questionNumber}).classList.remove("active");
+            document.getElementById(`question${questionNumber}`).classList.remove("active");
             const prevQuestionId = questionNumber - 1;
-            document.getElementById(question${prevQuestionId}).classList.add("active");
+            document.getElementById(`question${prevQuestionId}`).classList.add("active");
             currentQuestion = prevQuestionId;
             updateStepIndicator(); // 단계 업데이트
         }
@@ -414,7 +421,7 @@ function showResult() {
     document.querySelector(".step-indicator").style.display = "none";
 
     const totalScore = scores.reduce((a, b) => a + b, 0);
-    console.log(Total score calculated: ${totalScore}); // 디버그 로그
+    console.log(`Total score calculated: ${totalScore}`); // 디버그 로그
 
     let resultIndex;
     if (totalScore <= thresholds[0]) {
@@ -430,7 +437,7 @@ function showResult() {
     }
 
     const result = results[resultIndex];
-    console.log(Result selected: ${result.text}); // 디버그 로그
+    console.log(`Result selected: ${result.text}`); // 디버그 로그
     document.getElementById("resultImage").src = result.image;
     document.getElementById("resultText").textContent = result.text;
 
