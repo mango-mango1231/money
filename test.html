@@ -1,122 +1,82 @@
 
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>돈미새 테스트</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Nanum+Myeongjo&family=Nanum+Gothic&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
         html, body {
-            overflow: hidden; /* 스크롤 제거 */
-            height: 100%;
             margin: 0;
             padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
-        
         body { 
-            font-family: 'Noto Sans KR', sans-serif; 
+            font-family: 'Noto Sans KR', sans-serif;
             text-align: center;
+            background-color: #000; /* Default background for the whole page */
         }
         .title-image {
-            height: auto; /* Adjusts height automatically to maintain aspect ratio */
-            max-height: 75px; /* Further increased height for better visibility */
-            width: auto; /* Width is automatically adjusted */
-            max-width: 100%; /* Ensures image does not exceed screen width */
+            height: auto; 
+            max-height: 75px; 
+            width: auto;
+            max-width: 100%; 
         }
         .step-indicator {
-            margin: 30px auto;
+            margin: 10px auto 0; /* Reduced top margin */
             font-size: 12px;
             display: flex;
             justify-content: space-between;
             max-width: 300px;
-        }
-        .step-indicator span {
-            font-weight: normal;
+            background-color: #fff; /* White background for the top part */
+            padding: 10px 0; /* Padding to space out elements */
         }
         .question-container { 
             display: none; 
-            margin: 40px;
+            margin: 0; /* No vertical margin */
+            background-color: #000; /* Black background for questions */
+            color: #fff; /* White text for readability */
         }
         .question-container.active { 
             display: block; 
         }
-        .question-text { 
-            font-size: 32px; /* 크기 확실히 키움 */
-            font-weight: bold; /* 굵게 표시 */
-            text-align: left; /* 왼쪽 정렬 */
-            margin-bottom: 30px;
-            padding-left: 20px; /* 왼쪽 여백 추가 */
-        }
-        .button {
-            margin-top: 20px; 
-            padding: 15px 30px; 
-            color: white; 
-            border: none; 
-            border-radius: 20px;
-            cursor: pointer; 
-            font-size: 18px;
-            display: inline-block;
-            text-align: center;
-        }
-        .next-button {
-            background-color: #4CAF50;
-        }
-        .prev-button {
-            background-color: #FFA07A; 
-            margin-right: 10px;
-        }
         .image-grid {
             display: flex;
             overflow-x: auto;
-            gap: 30px;
-            padding: 10px;
-            scroll-behavior: smooth;
+            gap: 10px;
+            margin: 0 20px; /* Use space at the sides */
         }
         .image-option { 
             flex: 0 0 auto;
             cursor: pointer;
             border-radius: 15px;
-            transition: background-color 0.3s ease;
-            text-align: center;
+            transition: background-color 0.3s;
         }
         .image-option img {
             width: 100%;
             height: auto;
-            max-width: 200px;
-            aspect-ratio: 1;
+            max-width: 100%;
             border-radius: 15px;
-            border: 2px solid #ccc;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s, border-color 0.3s;
         }
-        .image-option .level-text {
-            margin-top: 10px;
-        }
-        .image-option .image-caption {
-            margin-top: 10px;
-        }
         .image-option.selected img {
-            background-color: #e0e0e0;
-            border-color: red;
+            border-color: red; /* Highlight selected option */
         }
         .image-option:hover img {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
-        .result-image {
-            width: 100%; /* Ensure image does not exceed the width of the screen */
-            height: auto; /* Maintain aspect ratio */
-            max-width: 100%; /* Prevents the image from exceeding the viewport width */
+        .result-container {
+            padding: 20px;
+            background-color: #000; /* Black background for results */
+            color: #fff; /* Text color for readability */
         }
     </style>
 </head>
 <body>
-
-    <h1 class="title">
+    <h1>
         <img src="https://i.postimg.cc/pr6fsWBb/newtitle.png" alt="돈미새 테스트" class="title-image">
     </h1>
-
-    <!-- 단계 표시 -->
     <div class="step-indicator">
         <span id="step1">1단계</span>
         <span id="step2">2단계</span>
