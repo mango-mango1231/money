@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+<!DOCTYPE html> 
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -10,13 +11,12 @@
             font-family: 'Noto Sans KR', sans-serif; 
             text-align: center;
         }
-        .title {
-            font-size: 28px;
-            margin-bottom: 5px;
+        .title-image {
+            height: auto; /* Adjusts height automatically to maintain aspect ratio */
+            max-height: 28px; /* Original title font size, maintaining the height */
+            width: auto; /* Width is automatically adjusted */
+            max-width: 100%; /* Ensures image does not exceed screen width */
         }
-        .title .text-red { color: red; }
-        .title .text-yellow { color: #FFA500; }
-        .title .text-green { color: green; }
         .step-indicator {
             margin: 30px auto;
             font-size: 12px;
@@ -95,13 +95,18 @@
         }
         .image-option:hover img {
             transform: scale(1.05);
-         }
+        }
+        .result-image {
+            width: 100%; /* Ensure image does not exceed the width of the screen */
+            height: auto; /* Maintain aspect ratio */
+            max-width: 100%; /* Prevents the image from exceeding the viewport width */
+        }
     </style>
 </head>
 <body>
 
     <h1 class="title">
-        <span class="text-red">돈</span><span class="text-yellow">미</span><span class="text-green">새</span> 테스트
+        <img src="https://i.postimg.cc/pr6fsWBb/newtitle.png" alt="돈미새 테스트" class="title-image">
     </h1>
 
     <!-- 단계 표시 -->
