@@ -366,7 +366,7 @@ body {
     <img id="resultImage" src="" alt="결과 이미지" class="result-image">
     <p id="resultText" class="result-text"></p>
     <div class="result-buttons">
-        <button class="reset-button" onclick="window.location.href='https://sub.info1000.co.kr/test.html';">테스트 다시하기</button>
+       <button class="reset-button" onclick="resetTest()">테스트 다시하기</button>
         <button class="share-button" onclick="sharePage()">공유하기</button>
     </div>
 </div>
@@ -597,17 +597,42 @@ function showResult() {
 
     document.getElementById("result").classList.add("active");
 }
-       function resetTest() {
-    // 모든 점수 초기화
+function resetTest() {
+    // 1. 점수 배열 초기화
     scores.length = 0;
 
-    // 결과 화면 숨기기 및 첫 번째 질문 표시
-    document.getElementById('result').classList.remove('active');
+    // 2. 모든 질문을 비활성화
+    const questions = document.querySelectorAll('.question-container');
+    questions.forEach(question => {
+        question.classList.remove('active');
+    });
+
+    // 3. 첫 번째 질문 활성화
     document.getElementById('question1').classList.add('active');
 
-    // 단계 표시 초기화
+    // 4. 단계 표시 초기화
     document.querySelector(".step-indicator").style.display = "flex";
-    updateStepIndicator();
+    steps.forEach(step => {
+        document.getElementById(step).style.fontWeight = "normal";
+    });
+    document.getElementById(steps[0]).style.fontWeight = "bold";
+
+    // 5. 결과 화면 숨기기
+    document.getElementById('result').classList.remove('active');
+
+    // 6. 모든 "다음 문제" 버튼 비활성화 및 경고 문구 초기화
+    const nextButtons = document.querySelectorAll('.next-button');
+    nextButtons.forEach(button => {
+        button.disabled = true;
+    });
+
+    const warningTexts = document.querySelectorAll('.warning-text');
+    warningTexts.forEach(warning => {
+        warning.style.display = "block";
+    });
+
+    // 디버그 로그
+    console.log('Test has been reset. Scores cleared and UI reset.');
 }
 
        function sharePage() {
