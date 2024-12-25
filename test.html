@@ -365,6 +365,11 @@ body {
         <h2>테스트 결과</h2>
         <img id="resultImage" src="" alt="결과 이미지" class="result-image">
         <p id="resultText" class="result-text"></p>
+        <div class="result-buttons">
+    <button class="reset-button" onclick="resetTest()">테스트 다시하기</button>
+    <button class="share-button" onclick="sharePage()">공유하기</button>
+</div>
+
     </div>
 <script>
 window.onload = function() {
@@ -401,6 +406,49 @@ function toggleSelection(element, question, score) {
         width: 100%; /* 이미지의 너비를 화면 너비에 맞춤 */
         height: auto; /* 이미지의 높이를 자동으로 조절하여 비율을 유지 */
     }
+.result-container {
+    background-color: #000; /* 배경을 검정색으로 설정 */
+    color: #fff;           /* 텍스트 색상을 흰색으로 설정 */
+    padding: 20px;
+}
+        .title {
+    background-color: #fff; /* 흰색 배경 */
+    padding: 10px;
+}
+        .result-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around; /* 버튼을 양쪽에 배치 */
+}
+
+.result-buttons button {
+    padding: 15px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.reset-button {
+    background-color: #4CAF50; /* 녹색 */
+    color: white;
+}
+
+.reset-button:hover {
+    background-color: #45a049;
+}
+
+.share-button {
+    background-color: #008CBA; /* 파란색 */
+    color: white;
+}
+
+.share-button:hover {
+    background-color: #007bb5;
+}
+
+
 </style>
     
    <script>
@@ -550,6 +598,55 @@ function showResult() {
 
     document.getElementById("result").classList.add("active");
 }
+       function resetTest() {
+    // 모든 점수 초기화
+    scores.length = 0;
+
+    // 결과 화면 숨기기 및 첫 번째 질문 표시
+    document.getElementById('result').classList.remove('active');
+    document.getElementById('question1').classList.add('active');
+
+    // 단계 표시 초기화
+    document.querySelector(".step-indicator").style.display = "flex";
+    updateStepIndicator();
+}
+
+       function sharePage() {
+    const url = window.location.href; // 현재 페이지 URL 가져오기
+    navigator.clipboard.writeText(url).then(() => {
+        alert('링크가 복사되었습니다! 친구와 공유해보세요.');
+    }).catch(err => {
+        alert('링크 복사에 실패했습니다.');
+    });
+}
+
+       function showResult() {
+    // 단계 숨기기
+    document.querySelector(".step-indicator").style.display = "none";
+
+    const totalScore = scores.reduce((a, b) => a + b, 0);
+
+    let resultIndex;
+    if (totalScore <= thresholds[0]) {
+        resultIndex = 0;
+    } else if (totalScore <= thresholds[1]) {
+        resultIndex = 1;
+    } else if (totalScore <= thresholds[2]) {
+        resultIndex = 2;
+    } else if (totalScore <= thresholds[3]) {
+        resultIndex = 3;
+    } else {
+        resultIndex = 4;
+    }
+
+    const result = results[resultIndex];
+    document.getElementById("resultImage").src = result.image;
+    document.getElementById("resultText").textContent = result.text;
+
+    // 결과 화면 활성화
+    document.getElementById("result").classList.add("active");
+}
+
     </script>
 </body>
 </html>
