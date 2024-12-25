@@ -366,7 +366,7 @@ body {
     <img id="resultImage" src="" alt="결과 이미지" class="result-image">
     <p id="resultText" class="result-text"></p>
     <div class="result-buttons">
-        <button class="reset-button" onclick="resetTest()">테스트 다시하기</button>
+        <button class="reset-button" onclick="window.location.href='https://sub.info1000.co.kr/test.html';">테스트 다시하기</button>
         <button class="share-button" onclick="sharePage()">공유하기</button>
     </div>
 </div>
@@ -611,7 +611,7 @@ function showResult() {
 }
 
        function sharePage() {
-    const url = "https://sub.info1000.co.kr/test.html"; // 1단계로 이동
+    const url = "https://sub.info1000.co.kr"; // 인트로 링크 복사
     navigator.clipboard.writeText(url).then(() => {
         alert('링크가 복사되었습니다! 친구와 공유해보세요.');
     }).catch(err => {
