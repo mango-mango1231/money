@@ -361,16 +361,15 @@ body {
      data-ad-format="auto"
      data-full-width-responsive="true"></ins></div>
   <!-- 결과 화면 -->
-    <div id="result" class="question-container">
-        <h2>테스트 결과</h2>
-        <img id="resultImage" src="" alt="결과 이미지" class="result-image">
-        <p id="resultText" class="result-text"></p>
-        <div class="result-buttons">
-    <button class="reset-button" onclick="resetTest()">테스트 다시하기</button>
-    <button class="share-button" onclick="sharePage()">공유하기</button>
-</div>
-
+<div id="result" class="question-container result-container">
+    <h2>테스트 결과</h2>
+    <img id="resultImage" src="" alt="결과 이미지" class="result-image">
+    <p id="resultText" class="result-text"></p>
+    <div class="result-buttons">
+        <button class="reset-button" onclick="resetTest()">테스트 다시하기</button>
+        <button class="share-button" onclick="sharePage()">공유하기</button>
     </div>
+</div>
 <script>
 window.onload = function() {
     const question1 = document.getElementById('question1');
