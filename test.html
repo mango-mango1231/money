@@ -711,10 +711,29 @@ function resetTest() {
 
 
 function sharePage() {
-    Kakao.Link.sendScrap({
-        requestUrl: 'https://sub.info1000.co.kr', // 공유할 링크
+    Kakao.Link.sendDefault({
+        objectType: 'feed',
+        content: {
+            title: '돈미새 test',
+            description: '나의 돈미새력은?', // 설명 제거
+            imageUrl: 'https://i.postimg.cc/Hxg4BY2S/image.png', // 이미지 제거
+            link: {
+                mobileWebUrl: 'https://sub.info1000.co.kr', // 모바일 URL
+                webUrl: 'https://sub.info1000.co.kr', // PC URL
+            },
+        },
+        buttons: [
+            {
+                title: '테스트 하러 가기', // 버튼 텍스트
+                link: {
+                    mobileWebUrl: 'https://sub.info1000.co.kr',
+                    webUrl: 'https://sub.info1000.co.kr',
+                },
+            },
+        ],
     });
 }
+
 
        // 테스트 초기화 함수
 function resetTest() {
