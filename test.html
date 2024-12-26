@@ -709,6 +709,12 @@ function resetTest() {
     });
 }
 
+       // 테스트 초기화 함수
+function resetTest() {
+    // 현재 페이지를 강제로 새로고침
+    location.reload(true); // true는 서버에서 최신 데이터를 가져오도록 강제
+}
+
        function showResult() {
     // 단계 숨기기
     document.querySelector(".step-indicator").style.display = "none";
