@@ -363,10 +363,12 @@ body {
   <!-- 결과 화면 -->
 <div id="result" class="question-container result-container">
     <h2>테스트 결과</h2>
-    <img id="resultImage" src="" alt="결과 이미지" class="result-image">
-    <p id="resultText" class="result-text"></p>
+    <div class="result-content">
+        <img id="resultImage" src="" alt="결과 이미지" class="result-image">
+        <p id="resultText" class="result-text"></p>
+    </div>
     <div class="result-buttons">
-       <button class="reset-button" onclick="resetTest()">테스트 다시하기</button>
+        <button class="reset-button" onclick="resetTest()">테스트 다시하기</button>
         <button class="share-button" onclick="sharePage()">공유하기</button>
     </div>
 </div>
@@ -404,8 +406,23 @@ function toggleSelection(element, question, score) {
     .result-image {
         width: 100%; /* 이미지의 너비를 화면 너비에 맞춤 */
         height: auto; /* 이미지의 높이를 자동으로 조절하여 비율을 유지 */
+        margin-bottom: 20px; /* 이미지와 텍스트 간격 */
+        
     }
-.result-container {
+
+        .result-content {
+    padding: 0 20px; /* 좌우 여백 추가 */
+    max-width: 800px; /* 중앙 정렬을 위한 최대 폭 */
+    margin: 0 auto; /* 가운데 정렬 */
+    text-align: center; /* 텍스트와 이미지를 중앙 정렬 */
+}
+
+        .result-text {
+    font-size: 18px; /* 텍스트 크기 조정 */
+    line-height: 1.6; /* 줄 간격 */
+}
+        
+        .result-container {
     background-color: #000; /* 결과 화면 배경을 검정색으로 설정 */
     color: #fff; /* 결과 화면 텍스트를 흰색으로 설정 */
     min-height: 100vh; /* 결과 화면을 화면 전체로 채우기 */
