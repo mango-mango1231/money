@@ -654,20 +654,24 @@ function resetTest() {
         option.classList.remove('selected'); // 선택된 스타일 초기화
     });
 
-    // 7. 모든 "다음 문제" 버튼 비활성화 및 경고 문구 초기화
-    const nextButtons = document.querySelectorAll('.next-button');
-    nextButtons.forEach(button => {
-        button.disabled = true; // 비활성화
-    });
+    // 7. "다음 문제" 버튼과 경고 문구 초기화
+    const questionContainers = document.querySelectorAll('.question-container');
+    questionContainers.forEach(container => {
+        const nextButton = container.querySelector('.next-button');
+        const warningText = container.querySelector('.warning-text');
 
-    const warningTexts = document.querySelectorAll('.warning-text');
-    warningTexts.forEach(warning => {
-        warning.style.display = "block"; // 경고 문구 표시
+        if (nextButton) {
+            nextButton.disabled = true; // 버튼 비활성화
+        }
+        if (warningText) {
+            warningText.style.display = "block"; // 경고 문구 표시
+        }
     });
 
     // 디버그 로그
     console.log('Test has been reset. Scores cleared and UI reset.');
 }
+
 
 
        function sharePage() {
