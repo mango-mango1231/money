@@ -633,10 +633,13 @@ function resetTest() {
     const questions = document.querySelectorAll('.question-container');
     questions.forEach(question => {
         question.classList.remove('active');
+        question.scrollTop = 0; // 스크롤 위치 초기화
     });
 
     // 3. 첫 번째 질문 활성화
-    document.getElementById('question1').classList.add('active');
+    const firstQuestion = document.getElementById('question1');
+    firstQuestion.classList.add('active');
+    firstQuestion.scrollTop = 0; // 첫 번째 질문도 스크롤 초기화
 
     // 4. 단계 표시 초기화
     document.querySelector(".step-indicator").style.display = "flex";
@@ -655,7 +658,6 @@ function resetTest() {
     });
 
     // 7. "다음 문제" 버튼과 경고 문구 초기화
-    const questionContainers = document.querySelectorAll('.question-container');
     questionContainers.forEach(container => {
         const nextButton = container.querySelector('.next-button');
         const warningText = container.querySelector('.warning-text');
@@ -668,9 +670,13 @@ function resetTest() {
         }
     });
 
+    // 8. 페이지 자체의 스크롤 위치 초기화
+    window.scrollTo(0, 0); // 전체 페이지 스크롤 초기화
+
     // 디버그 로그
-    console.log('Test has been reset. Scores cleared and UI reset.');
+    console.log('Test has been reset. Scores cleared, UI reset, and scroll positions reset.');
 }
+
 
 
 
