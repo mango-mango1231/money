@@ -114,6 +114,12 @@ body {
             height: auto;
             max-width: 100%;
         }
+        
+        .image-grid {
+            scroll-behavior: auto; /* 부드러운 스크롤이 아니라 즉시 스크롤 */
+            overflow-x: auto; /* 가로 스크롤 활성화 */
+        }
+    
     </style>
 </head>
 <body>
@@ -657,6 +663,7 @@ function resetTest() {
     });
 
     // 7. "다음 문제" 버튼과 경고 문구 초기화
+    const questionContainers = document.querySelectorAll('.question-container');
     questionContainers.forEach(container => {
         const nextButton = container.querySelector('.next-button');
         const warningText = container.querySelector('.warning-text');
@@ -675,12 +682,12 @@ function resetTest() {
         grid.scrollLeft = 0; // 가로 스크롤 초기화
     });
 
-    // 9. 브라우저가 스크롤 위치를 강제로 설정하지 않도록 약간의 지연 추가
-    setTimeout(() => {
+    // 9. 가로 스크롤 초기화 보장을 위해 requestAnimationFrame 사용
+    requestAnimationFrame(() => {
         imageGrids.forEach(grid => {
-            grid.scrollLeft = 0; // 가로 스크롤 위치 재설정
+            grid.scrollLeft = 0; // 리렌더링 후 재설정
         });
-    }, 50); // 50ms 지연 후 스크롤 초기화
+    });
 
     // 10. 페이지 자체의 세로 스크롤 위치 초기화
     window.scrollTo(0, 0);
@@ -688,6 +695,7 @@ function resetTest() {
     // 디버그 로그
     console.log('Test has been reset. Scores cleared, UI reset, and horizontal scroll positions reset.');
 }
+
 
 
 
