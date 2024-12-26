@@ -366,6 +366,16 @@ body {
      data-ad-slot="9163840509"
      data-ad-format="auto"
      data-full-width-responsive="true"></ins></div>
+
+    <!-- Kakao SDK 초기화 -->
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script>
+    // Kakao SDK 초기화 (Kakao Developers에서 발급받은 JavaScript 키로 대체)
+    Kakao.init('791520891cf7cfe0389f2d2b1590787c'); // Kakao Developers에서 받은 JavaScript 키
+    console.log(Kakao.isInitialized()); // true 확인
+</script>
+
+    
   <!-- 결과 화면 -->
 <div id="result" class="question-container result-container">
     <h2>테스트 결과</h2>
@@ -700,12 +710,28 @@ function resetTest() {
 
 
 
-       function sharePage() {
-    const url = "https://sub.info1000.co.kr"; // 인트로 링크 복사
-    navigator.clipboard.writeText(url).then(() => {
-        alert('링크가 복사되었습니다! 친구와 공유해보세요.');
-    }).catch(err => {
-        alert('링크 복사에 실패했습니다.');
+function sharePage() {
+    // 카카오 링크 공유 기능
+    Kakao.Link.sendDefault({
+        objectType: 'feed',
+        content: {
+            title: '테스트 제목', // 공유될 제목
+            description: '테스트 설명입니다.', // 공유될 설명
+            imageUrl: 'https://example.com/image.png', // 공유될 이미지 URL
+            link: {
+                mobileWebUrl: 'https://sub.info1000.co.kr', // 모바일에서 열릴 URL
+                webUrl: 'https://sub.info1000.co.kr', // PC에서 열릴 URL
+            },
+        },
+        buttons: [
+            {
+                title: '웹으로 보기',
+                link: {
+                    mobileWebUrl: 'https://sub.info1000.co.kr',
+                    webUrl: 'https://sub.info1000.co.kr',
+                },
+            },
+        ],
     });
 }
 
