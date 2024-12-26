@@ -600,6 +600,16 @@ function showResult() {
     }
 
     const result = results[resultIndex];
+    
+    // 이미지와 텍스트를 결과 화면에 동적으로 추가
+    const resultContainer = document.getElementById("result");
+    resultContainer.innerHTML = `
+        <div style="padding: 0 20px; max-width: 800px; margin: 0 auto; text-align: center;">
+            <img src="${result.image}" alt="결과 이미지" style="width: 100%; height: auto; margin-bottom: 20px;">
+            <p style="font-size: 18px; line-height: 1.6; color: #fff;">${result.text}</p>
+        </div>
+    `;
+    
     console.log(`Result selected: ${result.text}`); // 디버그 로그
     document.getElementById("resultImage").src = result.image;
     document.getElementById("resultText").textContent = result.text;
