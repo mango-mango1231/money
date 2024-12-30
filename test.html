@@ -39,7 +39,6 @@ body {
 
         .step-indicator span.active {
     font-weight: bold;
-    color: blue;
 }
         .question-container { 
             display: none; 
@@ -560,28 +559,16 @@ const results = [
             updateStepIndicator(); // 단계 업데이트
         }
 
-        function updateStepIndicator(currentStep) {
-    const steps = document.querySelectorAll('.step-indicator span');
-    steps.forEach((step, index) => {
-        if (index + 1 === currentStep) {
-            step.classList.add('active');
-        } else {
-            step.classList.remove('active');
+        function updateStepIndicator() {
+            // 모든 단계를 기본 상태로 초기화
+            steps.forEach((step) => {
+                document.getElementById(step).style.fontWeight = "normal";
+            });
+
+            // 현재 단계만 굵게 표시
+            const currentStep = steps[currentQuestion - 1];
+            document.getElementById(currentStep).style.fontWeight = "bold";
         }
-    });
-}
-
-function nextQuestion(currentStep) {
-    document.getElementById(`question${currentStep}`).classList.remove('active');
-    document.getElementById(`question${currentStep + 1}`).classList.add('active');
-    updateStepIndicator(currentStep + 1);
-}
-
-function prevQuestion(currentStep) {
-    document.getElementById(`question${currentStep}`).classList.remove('active');
-    document.getElementById(`question${currentStep - 1}`).classList.add('active');
-    updateStepIndicator(currentStep - 1);
-}
 
 function showResult() {
     // 단계 숨기기
