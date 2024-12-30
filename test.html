@@ -37,9 +37,9 @@ body {
             max-width: 300px;
         }
 
-        .step-indicator span {
-            font-weight: normal;
-        }
+        .step-indicator span.active {
+    font-weight: bold;
+}
         .question-container { 
             display: none; 
             margin: 40px;
@@ -130,7 +130,7 @@ body {
 
     <!-- 단계 표시 -->
     <div class="step-indicator">
-        <span id="step1">1단계</span>
+        <span id="step1" class="active">1단계</span>
         <span id="step2">2단계</span>
         <span id="step3">3단계</span>
         <span id="step4">4단계</span>
