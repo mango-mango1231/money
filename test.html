@@ -18,8 +18,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0;
-    padding: 0;
+    margin: 0; /* 기존 값 유지 */
+    padding: 0; /* 기존 값 유지 */
+    margin-bottom: 10px; /* 추가: 아래쪽 여백 조정 */
 }
 
 .title-image {
@@ -30,12 +31,12 @@ body {
 }
 
         .step-indicator {
-            margin: 30px auto;
-            font-size: 12px;
-            display: flex;
-            justify-content: space-between;
-            max-width: 300px;
-        }
+    margin: 10px auto; /* 기존 값에서 위쪽 여백을 줄임 */
+    font-size: 12px; /* 기존 값 유지 */
+    display: flex; /* 기존 값 유지 */
+    justify-content: space-between; /* 기존 값 유지 */
+    max-width: 300px; /* 기존 값 유지 */
+}
 
         .step-indicator span.active {
     font-weight: bold;
