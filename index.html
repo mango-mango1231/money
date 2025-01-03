@@ -13,7 +13,7 @@
 
         html, body {
             height: 100%;
-            overflow: hidden; /* 스크롤 제거 */
+            overflow: hidden;
         }
 
         body {
@@ -28,42 +28,44 @@
             width: 100%;
             max-width: 600px;
             height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            position: relative;
         }
 
         .thumbnail img {
             display: block;
             width: 100%;
             height: auto;
-            object-fit: contain; /* 비율 유지 */
+            object-fit: contain;
         }
 
         .title {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
         }
 
         .main-image {
-            flex: 3;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
         }
 
         .button {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: absolute;
+            bottom: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
         }
 
         .button img {
-            max-width: 80%;
-            max-height: 80px;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
         }
     </style>
 </head>
