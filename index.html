@@ -13,54 +13,71 @@
 
         html, body {
             height: 100%;
-            overflow: auto; /* 스크롤 허용 */
+            overflow: hidden; /* 스크롤 제거 */
         }
 
         body {
-            display: block;
+            display: flex;
             justify-content: center;
             align-items: center;
             background: url('https://i.postimg.cc/tg9WcjtM/background.png') no-repeat center center;
             background-size: cover;
-            text-align: center;
         }
 
         .thumbnail {
+            width: 100%;
             max-width: 600px;
-            margin: 0 auto;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .thumbnail img {
             display: block;
-            margin: 20px auto;
-            max-width: 90%;
+            width: 100%;
             height: auto;
+            object-fit: contain; /* 비율 유지 */
         }
 
-        .title img {
-            width: 80%;
-            max-height: 100px;
+        .title {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .main-image img {
-            width: 90%;
-            max-height: 300px;
+        .main-image {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .button img {
-            width: 70%;
+            max-width: 80%;
             max-height: 80px;
         }
     </style>
 </head>
 <body>
     <div class="thumbnail">
+        <!-- 제목 이미지 -->
         <div class="title">
             <img src="https://i.postimg.cc/pr6fsWBb/newtitle.png" alt="Title">
         </div>
+        <!-- 메인 이미지 -->
         <div class="main-image">
             <img src="https://i.postimg.cc/qMnmVpyJ/main-image.png" alt="Main Image">
         </div>
+        <!-- 버튼 이미지 -->
         <div class="button">
             <img src="https://i.postimg.cc/C1zWkFHq/button-n.png" alt="Button" onclick="startTest()">
         </div>
@@ -68,7 +85,7 @@
 
     <script>
         function startTest() {
-            window.location.href = "test.html";
+            window.location.href = "test.html"; // 테스트 페이지로 이동
         }
     </script>
 </body>
