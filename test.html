@@ -587,7 +587,6 @@ function showResult() {
     document.querySelector(".step-indicator").style.display = "none";
 
     const totalScore = scores.reduce((a, b) => a + b, 0);
-    console.log(`Total score calculated: ${totalScore}`); // 디버그 로그
 
     let resultIndex;
     if (totalScore <= thresholds[0]) {
@@ -603,11 +602,10 @@ function showResult() {
     }
 
     const result = results[resultIndex];
-        
-    console.log(`Result selected: ${result.text}`); // 디버그 로그
     document.getElementById("resultImage").src = result.image;
     document.getElementById("resultText").textContent = result.text;
-// 광고 삽입
+
+    // 광고 삽입
     const adContainer = document.createElement("div");
     adContainer.innerHTML = `
         <ins class="adsbygoogle"
@@ -618,12 +616,17 @@ function showResult() {
              data-full-width-responsive="true"></ins>
     `;
     document.getElementById("result").appendChild(adContainer);
-    (adsbygoogle = window.adsbygoogle || []).push({}); // 광고 초기화
+    
+    // 구글 애드센스 초기화
+    try {
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) {
+        console.error("AdSense initialization failed:", e);
+    }
 
     // 결과 화면 활성화
     document.getElementById("result").classList.add("active");
 }
-
 function resetTest() {
     // 1. 점수 배열 초기화
     scores.length = 0;
