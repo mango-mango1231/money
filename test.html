@@ -538,17 +538,6 @@ const results = [
     warningText.style.display = "none"; // 경고 문구 숨기기
 }
         function nextQuestion(questionNumber) {
-            document.getElementById(`question${questionNumber}`).classList.remove("active");
-            const nextQuestionId = questionNumber + 1;
-
-            if (nextQuestionId <= 6) {
-                document.getElementById(`question${nextQuestionId}`).classList.add("active");
-                currentQuestion = nextQuestionId;
-                updateStepIndicator(); // 단계 업데이트
-            } else {
-                showResult(); // 마지막 문제 후 결과 화면 표시
-            }
-        }function nextQuestion(questionNumber) {
     const currentQuestionContainer = document.getElementById(`question${questionNumber}`);
     currentQuestionContainer.classList.remove("active");
     const nextQuestionId = questionNumber + 1;
@@ -557,11 +546,8 @@ const results = [
         const nextQuestionContainer = document.getElementById(`question${nextQuestionId}`);
         nextQuestionContainer.classList.add("active");
 
-        // 다음 문제 버튼 초기화 (비활성화)
-        const nextButton = nextQuestionContainer.querySelector(".next-button");
-        const warningText = nextQuestionContainer.querySelector(".warning-text");
-        nextButton.disabled = true; // 비활성화
-        warningText.style.display = "block"; // 경고 문구 표시
+        // 광고 초기화
+        initializeAds();
 
         currentQuestion = nextQuestionId;
         updateStepIndicator(); // 단계 업데이트
@@ -569,13 +555,31 @@ const results = [
         showResult(); // 마지막 문제 후 결과 화면 표시
     }
 }
-        function prevQuestion(questionNumber) {
-            document.getElementById(`question${questionNumber}`).classList.remove("active");
-            const prevQuestionId = questionNumber - 1;
-            document.getElementById(`question${prevQuestionId}`).classList.add("active");
-            currentQuestion = prevQuestionId;
-            updateStepIndicator(); // 단계 업데이트
-        }
+
+function prevQuestion(questionNumber) {
+    const currentQuestionContainer = document.getElementById(`question${questionNumber}`);
+    currentQuestionContainer.classList.remove("active");
+    const prevQuestionId = questionNumber - 1;
+
+    if (prevQuestionId >= 1) {
+        const prevQuestionContainer = document.getElementById(`question${prevQuestionId}`);
+        prevQuestionContainer.classList.add("active");
+
+        // 광고 초기화
+        initializeAds();
+
+        currentQuestion = prevQuestionId;
+        updateStepIndicator(); // 단계 업데이트
+    }
+}
+
+function initializeAds() {
+    try {
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) {
+        console.error("AdSense initialization failed:", e);
+    }
+}
 
         function updateStepIndicator() {
             // 모든 단계를 기본 상태로 초기화
